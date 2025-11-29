@@ -1,0 +1,10 @@
+services:
+  db:
+    image: postgres
+    container_name: agile
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+      POSTGRES_DB: ${DB_NAME:-agile_db}
+    ports:
+      - "5432:${DB_PORT:-5432}"
