@@ -1,0 +1,27 @@
+package com.ensa.agile.infrastructure.security.service;
+
+import com.ensa.agile.domain.user.repository.UserRepository;
+import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaMapper;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+    private final UserRepository userRepository;
+
+    public UserDetailsServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (!userRepository.existsByEmailIgnoreCase(username)) {
+            throw UsernameNotFoundException.fromUsername(username);
+        }
+        return UserJpaMapper.toJpaEntity(userRepository.findByEmail(username).orElseThrow(
+                () -> new UsernameNotFoundException("User not found with email: " + username)));
+    }
+}

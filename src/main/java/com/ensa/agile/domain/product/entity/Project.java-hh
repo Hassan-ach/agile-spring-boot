@@ -1,0 +1,34 @@
+package com.ensa.agile.domain.product.entity;
+
+import java.time.LocalDate;
+
+import com.ensa.agile.domain.user.entity.User;
+import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+
+import lombok.Builder;
+import lombok.Getter;
+
+@Builder
+@Getter
+public class Project extends BaseDomainEntity {
+
+	private final String name;
+
+	private final String description;
+
+	private final User owner;
+
+	public Project(String name, String description, User owner) {
+		super(null);
+		this.name = name;
+		this.description = description;
+		this.owner = owner;
+	}
+
+	public Project(String id, String name, String description, User owner, LocalDate createdAt) {
+		super(id, createdAt);
+		this.name = name;
+		this.description = description;
+		this.owner = owner;
+	}
+}

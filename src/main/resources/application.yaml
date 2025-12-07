@@ -1,3 +1,7 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
 spring:
   application:
     name: agile
@@ -13,3 +17,12 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+security:
+  jwt:
+    expiration-hours: 1
+    secret.key: ${JWT_SECRET_KEY}
+logging:
+  level:
+    # root: DEBUG
+    org.springframework:
+      security: TRACE

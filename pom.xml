@@ -28,6 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
+        <jwt.version>0.13.0</jwt.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,20 +49,53 @@
 
         <dependency>
              <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-devtools</artifactId>
-            <!-- <optional>true</optional> -->
+             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+       <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-security</artifactId>
+       </dependency>
+       <dependency>
+           <groupId>io.jsonwebtoken</groupId>
+           <artifactId>jjwt-api</artifactId>
+           <version>${jwt.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>io.jsonwebtoken</groupId>
+           <artifactId>jjwt-impl</artifactId>
+           <version>${jwt.version}</version>
+       </dependency>
+       <dependency>
+           <groupId>io.jsonwebtoken</groupId>
+           <artifactId>jjwt-jackson</artifactId>
+           <version>${jwt.version}</version>
+       </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
         <dependency>
              <groupId>org.springframework.boot</groupId>
-             <artifactId>spring-boot-starter-data-jpa</artifactId>
+             <artifactId>spring-boot-validation</artifactId>
+        </dependency>
+
+        <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.7.4</version>
         </dependency>
+
+        <dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
+	</dependency>
 
 	</dependencies>
 

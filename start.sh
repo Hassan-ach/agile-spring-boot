@@ -15,6 +15,7 @@ if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
 
+
 # # 4. Clean and install dependencies (Maven)
 # echo "Building project..."
 # mvn clean install
