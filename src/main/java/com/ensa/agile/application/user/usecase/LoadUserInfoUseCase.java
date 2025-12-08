@@ -15,6 +15,6 @@ public class LoadUserInfoUseCase implements BaseUseCase<String, User> {
     private final UserRepository userRepository;
 
     public User execute(String email) {
-        return userRepository.loadUserByEmail(email);
+        return userRepository.findByEmail(email);
     }
 }

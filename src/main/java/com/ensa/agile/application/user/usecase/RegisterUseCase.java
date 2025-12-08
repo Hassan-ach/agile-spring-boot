@@ -10,7 +10,7 @@ import com.ensa.agile.application.user.response.AuthenticationResponse;
 import com.ensa.agile.application.user.security.IAuthenticationService;
 import com.ensa.agile.application.user.security.IPasswordEncoder;
 import com.ensa.agile.domain.user.entity.User;
-import com.ensa.agile.domain.user.exception.ValidationException;
+import com.ensa.agile.domain.user.exception.EmailAlreadyUsedExeption;
 import com.ensa.agile.domain.user.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class RegisterUseCase implements BaseUseCase<RegisterRequest, Authenticat
 
     public AuthenticationResponse execute(RegisterRequest registerRequest) {
         if (userRepository.existsByEmailIgnoreCase(registerRequest.getEmail())) {
-            throw new ValidationException("Email already used");
+            throw new EmailAlreadyUsedExeption();
         }
 
         String hashedPassword = passwordEncoder.encode(registerRequest.getPassword());

@@ -10,9 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.ensa.agile.application.user.security.IPasswordEncoder;
 import com.ensa.agile.application.user.usecase.LoadUserInfoUseCase;
 import com.ensa.agile.domain.user.entity.User;
 
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
     private final LoadUserInfoUseCase userInfoUseCase;
-    private final PasswordEncoder passwordEncoder;
+    private final IPasswordEncoder passwordEncoder;
 
     @Override
     public @Nullable Authentication authenticate(Authentication authentication) throws AuthenticationException {

@@ -1,6 +1,8 @@
 package com.ensa.agile.domain.user.exception;
 
-public class InvalidCredentialsException extends RuntimeException {
+import com.ensa.agile.domain.global.exception.ValidationException;
+
+public class InvalidCredentialsException extends ValidationException {
 	public InvalidCredentialsException(String message) {
 		super("Invalid credentials " + message);
 	}
@@ -8,5 +10,4 @@ public class InvalidCredentialsException extends RuntimeException {
 	public InvalidCredentialsException() {
 		super("Invalid credentials ");
 	}
-
 }

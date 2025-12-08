@@ -1,7 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.user.jpa;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
@@ -26,9 +25,10 @@ public class UserRepositoryAdapter implements UserRepository {
 	}
 
 	@Override
-	public Optional<User> findByEmail(String email) {
+	public User findByEmail(String email) {
 		return jpaUserRepository.findByEmail(email)
-				.map(UserJpaMapper::toDomainEntity);
+				.map(UserJpaMapper::toDomainEntity).orElseThrow(
+						() -> new UserNotFoundException());
 	}
 
 	@Override
@@ -45,9 +45,10 @@ public class UserRepositoryAdapter implements UserRepository {
 	}
 
 	@Override
-	public Optional<User> findById(String id) {
+	public User findById(String id) {
 		return jpaUserRepository.findById(id)
-				.map(UserJpaMapper::toDomainEntity);
+				.map(UserJpaMapper::toDomainEntity).orElseThrow(
+						() -> new UserNotFoundException());
 	}
 
 	@Override
@@ -58,14 +59,6 @@ public class UserRepositoryAdapter implements UserRepository {
 	@Override
 	public boolean existsById(String id) {
 		return jpaUserRepository.existsById(id);
-	}
-
-	public User loadUserByEmail(String email) {
-		if (!jpaUserRepository.existsByEmailIgnoreCase(email)) {
-			throw new UserNotFoundException(email);
-		}
-		return UserJpaMapper.toDomainEntity(jpaUserRepository.findByEmail(email).orElseThrow(
-				() -> new UserNotFoundException(email)));
 	}
 
 }

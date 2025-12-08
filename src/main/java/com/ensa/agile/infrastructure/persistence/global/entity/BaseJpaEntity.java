@@ -1,6 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.global.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -35,7 +35,7 @@ public abstract class BaseJpaEntity {
 
     @CreatedDate
     @Column(name = "CREATED_DATE", updatable = false, nullable = false)
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
 
     @CreatedBy
     @Column(name = "CREATED_BY", nullable = false, updatable = false)
@@ -43,7 +43,7 @@ public abstract class BaseJpaEntity {
 
     @LastModifiedDate
     @Column(name = "LAST_MODIFIED_DATE", insertable = false)
-    private LocalDate lastModifiedDate;
+    private LocalDateTime lastModifiedDate;
 
     @LastModifiedBy
     @Column(name = "LAST_MODIFIED_BY", insertable = false)

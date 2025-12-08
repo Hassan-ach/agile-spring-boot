@@ -1,6 +1,4 @@
-package com.ensa.agile.domain.user.exception;
-
-import com.ensa.agile.domain.global.exception.DomainException;
+package com.ensa.agile.domain.global.exception;
 
 public class ValidationException extends DomainException {
 	public ValidationException(String message) {

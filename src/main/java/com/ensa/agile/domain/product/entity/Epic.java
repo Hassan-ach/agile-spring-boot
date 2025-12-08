@@ -1,6 +1,6 @@
 package com.ensa.agile.domain.product.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
 
@@ -24,9 +24,9 @@ public class Epic extends BaseDomainEntity {
 		this.productBackLog = productBackLog;
 	}
 
-	public Epic(String id, String title, String description, ProductBackLog productBackLog, LocalDate createdDate,
+	public Epic(String id, String title, String description, ProductBackLog productBackLog, LocalDateTime createdDate,
 			String createdBy,
-			LocalDate lastModifiedDate, String lastModifiedBy) {
+			LocalDateTime lastModifiedDate, String lastModifiedBy) {
 		super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
 		this.title = title;
 		this.description = description;

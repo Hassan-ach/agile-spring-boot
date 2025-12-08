@@ -1,9 +1,9 @@
 package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.ensa.agile.domain.product.entity.ProductBackLog;
+import com.ensa.agile.domain.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,8 +22,9 @@ public class ProductBackLogRepositoryAdapter implements ProductBackLogRepository
     }
 
     @Override
-    public Optional<ProductBackLog> findById(String s) {
-        return this.jpaProductBackLogRepository.findById(s).map(ProductBackLogJpaMapper::toDomainEntity);
+    public ProductBackLog findById(String s) {
+        return this.jpaProductBackLogRepository.findById(s).map(ProductBackLogJpaMapper::toDomainEntity)
+                .orElseThrow(() -> new ProductBackLogNotFoundException());
     }
 
     @Override

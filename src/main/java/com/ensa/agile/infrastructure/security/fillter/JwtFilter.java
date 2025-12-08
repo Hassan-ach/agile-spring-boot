@@ -48,7 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
 
-        User u = userRepository.loadUserByEmail(userEmail);
+        User u = userRepository.findByEmail(userEmail);
         if (!jwtService.isTokenValid(jwt, u)) {
             filterChain.doFilter(request, response);
             return;

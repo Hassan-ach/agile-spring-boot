@@ -12,9 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.ensa.agile.domain.user.entity.User;
+import com.ensa.agile.infrastructure.security.exception.JwtCreationException;
+import com.ensa.agile.infrastructure.security.exception.JwtValidationException;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
@@ -42,7 +43,7 @@ public class JwtService {
                     .signWith(getSigningKey())
                     .compact();
         } catch (Exception e) {
-            throw new JwtException("Authentication Failed ", e);
+            throw new JwtCreationException();
         }
     }
 
@@ -74,7 +75,7 @@ public class JwtService {
                     .parseSignedClaims(token)
                     .getPayload();
         } catch (Exception e) {
-            throw new JwtException("Invalid JWT token", e);
+            throw new JwtValidationException();
         }
     }
 

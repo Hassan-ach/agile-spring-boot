@@ -1,6 +1,6 @@
 package com.ensa.agile.domain.story.entity;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
 import com.ensa.agile.domain.story.enums.StoryStatus;
@@ -25,9 +25,9 @@ public class UserStoryHistory extends BaseDomainEntity {
         this.note = note;
     }
 
-    public UserStoryHistory(String id, UserStory userStory, StoryStatus status, String note, LocalDate createdDate,
+    public UserStoryHistory(String id, UserStory userStory, StoryStatus status, String note, LocalDateTime createdDate,
             String createdBy,
-            LocalDate lastModifiedDate, String lastModifiedBy) {
+            LocalDateTime lastModifiedDate, String lastModifiedBy) {
         super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
         this.userStory = userStory;
         this.status = status;
