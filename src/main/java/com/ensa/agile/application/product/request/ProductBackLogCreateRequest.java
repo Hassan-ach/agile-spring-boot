@@ -9,11 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 public class ProductBackLogCreateRequest {
+  @NotBlank private final String name;
 
-    @NotBlank
-    private final String name;
-
-    @NotBlank
-    private final String description;
-
+  @NotBlank private final String description;
 }

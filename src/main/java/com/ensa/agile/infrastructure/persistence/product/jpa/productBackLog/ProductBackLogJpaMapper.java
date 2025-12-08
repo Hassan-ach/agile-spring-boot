@@ -4,27 +4,26 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 
 public class ProductBackLogJpaMapper {
 
-    public static ProductBackLogJpaEntity toJpaEntity(ProductBackLog ProductBackLog) {
-        ProductBackLogJpaEntity jpaEntity = new ProductBackLogJpaEntity(
-                ProductBackLog.getId(),
-                ProductBackLog.getName(),
-                ProductBackLog.getDescription(),
-                ProductBackLog.getCreatedDate(),
-                ProductBackLog.getCreatedBy(),
-                ProductBackLog.getLastModifiedDate(),
-                ProductBackLog.getLastModifiedBy());
-        return jpaEntity;
-    }
+  public static ProductBackLogJpaEntity
+  toJpaEntity(ProductBackLog ProductBackLog) {
+    ProductBackLogJpaEntity jpaEntity =
+        ProductBackLogJpaEntity.builder()
+            .id(ProductBackLog.getId())
+            .name(ProductBackLog.getName())
+            .description(ProductBackLog.getDescription())
+            .createdDate(ProductBackLog.getCreatedDate())
+            .createdBy(ProductBackLog.getCreatedBy())
+            .lastModifiedDate(ProductBackLog.getLastModifiedDate())
+            .lastModifiedBy(ProductBackLog.getLastModifiedBy())
+            .build();
+    return jpaEntity;
+  }
 
-    public static ProductBackLog toDomainEntity(ProductBackLogJpaEntity jpaEntity) {
-        return new ProductBackLog(
-                jpaEntity.getId(),
-                jpaEntity.getName(),
-                jpaEntity.getDescription(),
-                jpaEntity.getCreatedDate(),
-                jpaEntity.getCreatedBy(),
-                jpaEntity.getLastModifiedDate(),
-                jpaEntity.getLastModifiedBy());
-
-    }
+  public static ProductBackLog
+  toDomainEntity(ProductBackLogJpaEntity jpaEntity) {
+    return new ProductBackLog(
+        jpaEntity.getId(), jpaEntity.getName(), jpaEntity.getDescription(),
+        jpaEntity.getCreatedDate(), jpaEntity.getCreatedBy(),
+        jpaEntity.getLastModifiedDate(), jpaEntity.getLastModifiedBy());
+  }
 }
