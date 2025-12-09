@@ -3,6 +3,7 @@ package com.ensa.agile.presentation.advice;
 import com.ensa.agile.application.product.exception.EpicNotFoundException;
 import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.application.product.exception.UserAlreadyInvitedException;
+import com.ensa.agile.application.user.exception.AuthenticationFailureException;
 import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 import com.ensa.agile.application.user.exception.UserNotFoundException;
@@ -12,8 +13,6 @@ import com.ensa.agile.domain.global.exception.DataBaseTransactionException;
 import com.ensa.agile.domain.global.exception.DomainException;
 import com.ensa.agile.domain.global.exception.ForbidException;
 import com.ensa.agile.domain.global.exception.ValidationException;
-import com.ensa.agile.infrastructure.security.exception.JwtCreationException;
-import com.ensa.agile.infrastructure.security.exception.JwtValidationException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
@@ -24,11 +23,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     private ResponseEntity<Map<String, String>>
+
     buildErrorResponse(String message, HttpStatus status) {
         Map<String, String> error = new HashMap<>();
         error.put("error", message);
         return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler({InvalidCredentialsException.class})
+    public ResponseEntity<Map<String, String>>
+        handleUnauthorizedExceptions(Exception ex) {
+        return buildErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler({ValidationException.class,
@@ -65,8 +72,8 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(ex.getMessage(),
                                   HttpStatus.UNPROCESSABLE_CONTENT);
     }
-    @ExceptionHandler({JwtCreationException.class,
-                       JwtValidationException.class})
+
+    @ExceptionHandler({AuthenticationFailureException.class})
     public ResponseEntity<Map<String, String>>
         HandleJwtExceptions(Exception ex) {
         return buildErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED);
@@ -96,6 +103,6 @@ public class GlobalExceptionHandler {
     handleUncaughtRuntimeException(RuntimeException ex) {
 
         return buildErrorResponse("A critical system error occurred.",
-                                  HttpStatus.INTERNAL_SERVER_ERROR); // 500
+                                  HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

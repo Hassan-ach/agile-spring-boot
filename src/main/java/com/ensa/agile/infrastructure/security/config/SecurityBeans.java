@@ -8,14 +8,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 public class SecurityBeans {
-                @Bean
-                public BCryptPasswordEncoder passwordEncoder() {
-                                return new BCryptPasswordEncoder();
-                }
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-                @Bean
-                public AuthenticationManager authenticationManager(final AuthenticationConfiguration config)
-                                                throws Exception {
-                                return config.getAuthenticationManager();
-                }
+    @Bean
+    public AuthenticationManager
+    authenticationManager(final AuthenticationConfiguration config)
+        throws Exception {
+        return config.getAuthenticationManager();
+    }
 }

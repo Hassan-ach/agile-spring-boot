@@ -23,16 +23,22 @@ public class TransactionWrapper implements ITransactionalWrapper {
             try {
                 return callBack.execution();
             } catch (AlreadyExistException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (ApplicationException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (ForbidException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (NotFoundException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (ValidationException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (DomainException e) {
+                status.setRollbackOnly();
                 throw e;
             } catch (Exception e) {
                 status.setRollbackOnly();
