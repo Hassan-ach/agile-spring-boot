@@ -1,8 +1,7 @@
 package com.ensa.agile.application.user.usecase;
 
-import org.springframework.stereotype.Component;
-
-import com.ensa.agile.application.global.BaseUseCase;
+import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.user.mapper.AuthenticationResponseMapper;
 import com.ensa.agile.application.user.mapper.RegisterRequestMapper;
 import com.ensa.agile.application.user.request.RegisterRequest;
@@ -10,31 +9,42 @@ import com.ensa.agile.application.user.response.AuthenticationResponse;
 import com.ensa.agile.application.user.security.IAuthenticationService;
 import com.ensa.agile.application.user.security.IPasswordEncoder;
 import com.ensa.agile.domain.user.entity.User;
-import com.ensa.agile.domain.user.exception.EmailAlreadyUsedExeption;
+import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
 import com.ensa.agile.domain.user.repository.UserRepository;
-
-import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
-public class RegisterUseCase implements BaseUseCase<RegisterRequest, AuthenticationResponse> {
+public class RegisterUseCase
+    extends BaseUseCase<RegisterRequest, AuthenticationResponse> {
+
     private final UserRepository userRepository;
     private final IPasswordEncoder passwordEncoder;
     private final IAuthenticationService authenticationService;
 
+    public RegisterUseCase(UserRepository userRepository,
+                           IPasswordEncoder passwordEncoder,
+                           IAuthenticationService authenticationService,
+                           ITransactionalWrapper transactionalWrapper) {
+        super(transactionalWrapper);
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.authenticationService = authenticationService;
+    }
+
     public AuthenticationResponse execute(RegisterRequest registerRequest) {
-        if (userRepository.existsByEmailIgnoreCase(registerRequest.getEmail())) {
+        if (userRepository.existsByEmailIgnoreCase(
+                registerRequest.getEmail())) {
             throw new EmailAlreadyUsedExeption();
         }
 
-        String hashedPassword = passwordEncoder.encode(registerRequest.getPassword());
+        String hashedPassword =
+            passwordEncoder.encode(registerRequest.getPassword());
 
         User u = RegisterRequestMapper.toUser(registerRequest, hashedPassword);
 
         userRepository.save(u);
 
         return AuthenticationResponseMapper.toResponse(
-                authenticationService.generateToken(u.getEmail()));
+            authenticationService.generateToken(u.getEmail()));
     }
-
 }

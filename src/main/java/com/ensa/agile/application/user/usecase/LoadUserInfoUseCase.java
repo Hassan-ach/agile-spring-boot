@@ -1,18 +1,22 @@
 package com.ensa.agile.application.user.usecase;
 
-import org.springframework.stereotype.Component;
-
-import com.ensa.agile.application.global.BaseUseCase;
+import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.domain.user.entity.User;
 import com.ensa.agile.domain.user.repository.UserRepository;
+import org.springframework.stereotype.Component;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Component
-public class LoadUserInfoUseCase implements BaseUseCase<String, User> {
+public class LoadUserInfoUseCase extends BaseUseCase<String, User> {
 
     private final UserRepository userRepository;
+
+    public LoadUserInfoUseCase(UserRepository userRepository,
+                               ITransactionalWrapper transactionalWrapper) {
+
+        super(transactionalWrapper);
+        this.userRepository = userRepository;
+    }
 
     public User execute(String email) {
         return userRepository.findByEmail(email);

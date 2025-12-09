@@ -1,7 +1,7 @@
 package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 
 import com.ensa.agile.domain.product.entity.ProductBackLog;
-import com.ensa.agile.domain.product.exception.ProductBackLogNotFoundException;
+import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
 import java.util.List;
 import org.springframework.stereotype.Repository;

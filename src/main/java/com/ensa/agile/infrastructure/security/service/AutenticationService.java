@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.ensa.agile.application.user.security.IAuthenticationService;
 import com.ensa.agile.domain.user.entity.User;
-import com.ensa.agile.domain.user.exception.InvalidCredentialsException;
+import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 
 import lombok.RequiredArgsConstructor;
 

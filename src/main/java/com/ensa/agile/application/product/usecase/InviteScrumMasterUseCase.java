@@ -1,0 +1,30 @@
+package com.ensa.agile.application.product.usecase;
+
+import com.ensa.agile.application.common.request.InviteRequest;
+import com.ensa.agile.application.common.response.InviteResponse;
+import com.ensa.agile.application.common.useCase.InviteUseCase;
+import com.ensa.agile.application.global.service.ICurrentUser;
+import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
+import com.ensa.agile.domain.product.enums.RoleType;
+import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
+import com.ensa.agile.domain.product.repository.ProjectMemberRepository;
+import com.ensa.agile.domain.user.repository.UserRepository;
+import org.springframework.stereotype.Component;
+
+@Component
+public class InviteScrumMasterUseCase extends InviteUseCase {
+
+    public InviteScrumMasterUseCase(
+        ProjectMemberRepository projectMemberRepository,
+        ProductBackLogRepository productBackLogRepository,
+        UserRepository userRepository, ICurrentUser currentUserService,
+        ITransactionalWrapper transactionalWrapper) {
+
+        super(projectMemberRepository, productBackLogRepository, userRepository,
+              currentUserService, transactionalWrapper);
+    }
+
+    public InviteResponse execute(InviteRequest data) {
+        return this.executeInvitaion(data, RoleType.SCRUM_MASTER);
+    }
+}
