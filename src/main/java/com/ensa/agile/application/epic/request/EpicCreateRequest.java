@@ -1,4 +1,4 @@
-package com.ensa.agile.application.common.request;
+package com.ensa.agile.application.epic.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,11 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 @Data
-public class InviteRequest {
-    @NotBlank private final String email;
+public class EpicCreateRequest {
+
+    @NotBlank private final String title;
+
+    @NotBlank private final String description;
+
     private String productId;
 }

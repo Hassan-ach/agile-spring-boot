@@ -5,16 +5,18 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
+@Setter
 public class Epic extends BaseDomainEntity {
 
-    private final String title;
+    private String title;
 
-    private final String description;
+    private String description;
 
-    private final ProductBackLog productBackLog;
+    private ProductBackLog productBackLog;
 
     public Epic(String title, String description,
                 ProductBackLog productBackLog) {

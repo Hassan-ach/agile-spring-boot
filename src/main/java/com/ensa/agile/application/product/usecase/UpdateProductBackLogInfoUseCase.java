@@ -27,7 +27,6 @@ public class UpdateProductBackLogInfoUseCase
         ProductBackLog productBackLog =
             productBackLogRepository.findById(data.getId());
 
-        System.out.println("Updating ProductBackLog with ID: " + data.getId());
         return ProductBackLogResponseMapper.tResponse(
             productBackLogRepository.save(merge(productBackLog, data)));
     }

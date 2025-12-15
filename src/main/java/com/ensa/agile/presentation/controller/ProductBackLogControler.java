@@ -18,9 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,7 +36,7 @@ public class ProductBackLogControler {
     private final RemoveScrumMasterUseCase removeScrumMasterUseCase;
     private final GetProductBackLogUseCase getProductBackLogUseCase;
 
-    @PostMapping("/create")
+    @PostMapping("/")
     public ResponseEntity<ProductBackLogResponse> createProductBacklog(
         @Valid @RequestBody ProductBackLogCreateRequest request) {
 
@@ -51,28 +51,33 @@ public class ProductBackLogControler {
             .body(getProductBackLogUseCase.execute(id));
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/{id}")
     @PreAuthorize("@abacService.canAccessProject(#id,  'UPDATE')")
     public ResponseEntity<ProductBackLogResponse> updateProductBacklog(
         @PathVariable String id,
         @Valid @RequestBody ProductBackLogUpdateRequest request) {
 
         request.setId(id);
-
         return ResponseEntity.status(HttpStatus.OK)
             .body(updateProductBackLogUseCase.executeTransactionally(request));
     }
 
-    @PostMapping("/invite/scrum-master")
+    @PostMapping("/{id}/invite/scrum-master")
     public ResponseEntity<InviteResponse>
-    inviteScrumMaster(@Valid @RequestBody InviteRequest request) {
+    inviteScrumMaster(@Valid @RequestBody InviteRequest request,
+                      @PathVariable String id) {
+
+        request.setProductId(id);
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(inviteScrumMasterUseCase.executeTransactionally(request));
     }
 
-    @PostMapping("/remove/scrum-master")
+    @PostMapping("/{id}/remove/scrum-master")
     public ResponseEntity<RemoveResponse>
-    removeScrumeMaster(@Valid @RequestBody RemoveRequest request) {
+    removeScrumeMaster(@Valid @RequestBody RemoveRequest request,
+                       @PathVariable String id) {
+
+        request.setProductId(id);
         return ResponseEntity.status(HttpStatus.OK)
             .body(removeScrumMasterUseCase.executeTransactionally(request));
     }
