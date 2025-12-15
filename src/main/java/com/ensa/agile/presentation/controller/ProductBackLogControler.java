@@ -8,6 +8,7 @@ import com.ensa.agile.application.product.request.ProductBackLogCreateRequest;
 import com.ensa.agile.application.product.request.ProductBackLogUpdateRequest;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.application.product.usecase.CreateProductBackLogUseCase;
+import com.ensa.agile.application.product.usecase.GetProductBackLogUseCase;
 import com.ensa.agile.application.product.usecase.InviteScrumMasterUseCase;
 import com.ensa.agile.application.product.usecase.RemoveScrumMasterUseCase;
 import com.ensa.agile.application.product.usecase.UpdateProductBackLogInfoUseCase;
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,6 +34,7 @@ public class ProductBackLogControler {
     private final UpdateProductBackLogInfoUseCase updateProductBackLogUseCase;
     private final InviteScrumMasterUseCase inviteScrumMasterUseCase;
     private final RemoveScrumMasterUseCase removeScrumMasterUseCase;
+    private final GetProductBackLogUseCase getProductBackLogUseCase;
 
     @PostMapping("/create")
     public ResponseEntity<ProductBackLogResponse> createProductBacklog(
@@ -39,6 +42,13 @@ public class ProductBackLogControler {
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(createProductBacklogUseCase.executeTransactionally(request));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductBackLogResponse>
+    getProductBacklogById(@PathVariable String id) {
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(getProductBackLogUseCase.execute(id));
     }
 
     @PutMapping("/update/{id}")
