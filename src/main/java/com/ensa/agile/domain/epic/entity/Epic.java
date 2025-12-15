@@ -1,0 +1,36 @@
+package com.ensa.agile.domain.epic.entity;
+
+import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+import com.ensa.agile.domain.product.entity.ProductBackLog;
+import java.time.LocalDateTime;
+import lombok.Builder;
+import lombok.Getter;
+
+@Builder
+@Getter
+public class Epic extends BaseDomainEntity {
+
+    private final String title;
+
+    private final String description;
+
+    private final ProductBackLog productBackLog;
+
+    public Epic(String title, String description,
+                ProductBackLog productBackLog) {
+        super(null);
+        this.title = title;
+        this.description = description;
+        this.productBackLog = productBackLog;
+    }
+
+    public Epic(String id, String title, String description,
+                ProductBackLog productBackLog, LocalDateTime createdDate,
+                String createdBy, LocalDateTime lastModifiedDate,
+                String lastModifiedBy) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
+        this.title = title;
+        this.description = description;
+        this.productBackLog = productBackLog;
+    }
+}

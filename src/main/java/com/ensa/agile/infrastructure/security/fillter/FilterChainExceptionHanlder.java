@@ -13,21 +13,21 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 @Component
 public class FilterChainExceptionHanlder extends OncePerRequestFilter {
 
-  private HandlerExceptionResolver resolver;
+    private HandlerExceptionResolver resolver;
 
-  public FilterChainExceptionHanlder(@Qualifier("handlerExceptionResolver")
-                                     HandlerExceptionResolver resolver) {
-    this.resolver = resolver;
-  }
-
-  protected void doFilterInternal(HttpServletRequest request,
-                                  HttpServletResponse response,
-                                  FilterChain filterChain)
-      throws IOException, ServletException {
-    try {
-      filterChain.doFilter(request, response);
-    } catch (Exception ex) {
-      resolver.resolveException(request, response, null, ex);
+    public FilterChainExceptionHanlder(@Qualifier("handlerExceptionResolver")
+                                       HandlerExceptionResolver resolver) {
+        this.resolver = resolver;
     }
-  }
+
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+        throws IOException, ServletException {
+        try {
+            filterChain.doFilter(request, response);
+        } catch (Exception ex) {
+            resolver.resolveException(request, response, null, ex);
+        }
+    }
 }

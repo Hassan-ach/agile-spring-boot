@@ -1,13 +1,11 @@
 package com.ensa.agile.domain.story.entity;
 
-import java.time.LocalDateTime;
-
+import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
-import com.ensa.agile.domain.product.entity.Epic;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.enums.StoryStatus;
-
+import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -15,60 +13,54 @@ import lombok.Getter;
 @Getter
 public class UserStory extends BaseDomainEntity {
 
-                                private final String title;
+    private final String title;
 
-                                private final String description;
-                                private final Integer priority;
+    private final String description;
+    private final Integer priority;
 
-                                private final StoryStatus status;
+    private final StoryStatus status;
 
-                                private final Integer storyPoints;
-                                private final String acceptanceCriteria;
+    private final Integer storyPoints;
+    private final String acceptanceCriteria;
 
-                                private final Epic epic;
+    private final Epic epic;
 
-                                private final ProductBackLog productBackLog;
+    private final ProductBackLog productBackLog;
 
-                                private final SprintBackLog sprintBackLog;
+    private final SprintBackLog sprintBackLog;
 
-                                public UserStory(String title, String description, Integer priority, StoryStatus status,
-                                                                                                Integer storyPoints,
-                                                                                                String acceptanceCriteria,
-                                                                                                Epic epic,
-                                                                                                ProductBackLog productBackLog,
-                                                                                                SprintBackLog sprintBackLog) {
-                                                                super(null);
-                                                                this.title = title;
-                                                                this.description = description;
-                                                                this.priority = priority;
-                                                                this.status = status;
-                                                                this.storyPoints = storyPoints;
-                                                                this.acceptanceCriteria = acceptanceCriteria;
-                                                                this.epic = epic;
-                                                                this.productBackLog = productBackLog;
-                                                                this.sprintBackLog = sprintBackLog;
-                                }
+    public UserStory(String title, String description, Integer priority,
+                     StoryStatus status, Integer storyPoints,
+                     String acceptanceCriteria, Epic epic,
+                     ProductBackLog productBackLog,
+                     SprintBackLog sprintBackLog) {
+        super(null);
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+        this.storyPoints = storyPoints;
+        this.acceptanceCriteria = acceptanceCriteria;
+        this.epic = epic;
+        this.productBackLog = productBackLog;
+        this.sprintBackLog = sprintBackLog;
+    }
 
-                                public UserStory(String id, String title, String description, Integer priority,
-                                                                                                StoryStatus status,
-                                                                                                Integer storyPoints,
-                                                                                                String acceptanceCriteria,
-                                                                                                Epic epic,
-                                                                                                ProductBackLog productBackLog,
-                                                                                                SprintBackLog sprintBackLog,
-                                                                                                LocalDateTime createdDate,
-                                                                                                String createdBy,
-                                                                                                LocalDateTime lastModifiedDate,
-                                                                                                String lastModifiedBy) {
-                                                                super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-                                                                this.title = title;
-                                                                this.description = description;
-                                                                this.priority = priority;
-                                                                this.status = status;
-                                                                this.storyPoints = storyPoints;
-                                                                this.acceptanceCriteria = acceptanceCriteria;
-                                                                this.epic = epic;
-                                                                this.productBackLog = productBackLog;
-                                                                this.sprintBackLog = sprintBackLog;
-                                }
+    public UserStory(String id, String title, String description,
+                     Integer priority, StoryStatus status, Integer storyPoints,
+                     String acceptanceCriteria, Epic epic,
+                     ProductBackLog productBackLog, SprintBackLog sprintBackLog,
+                     LocalDateTime createdDate, String createdBy,
+                     LocalDateTime lastModifiedDate, String lastModifiedBy) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+        this.storyPoints = storyPoints;
+        this.acceptanceCriteria = acceptanceCriteria;
+        this.epic = epic;
+        this.productBackLog = productBackLog;
+        this.sprintBackLog = sprintBackLog;
+    }
 }

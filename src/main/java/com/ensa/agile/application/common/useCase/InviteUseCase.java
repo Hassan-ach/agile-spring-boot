@@ -17,8 +17,8 @@ import com.ensa.agile.domain.user.repository.UserRepository;
 public abstract class InviteUseCase
     extends BaseUseCase<InviteRequest, InviteResponse> {
 
-    private final ProjectMemberRepository projectMemberRepository;
     private final ProductBackLogRepository productBackLogRepository;
+    private final ProjectMemberRepository projectMemberRepository;
     private final UserRepository userRepository;
     private final ICurrentUser currentUserService;
 

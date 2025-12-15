@@ -2,8 +2,7 @@ package com.ensa.agile.infrastructure.persistence.story.jpa;
 
 import com.ensa.agile.domain.story.enums.StoryStatus;
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
-import com.ensa.agile.infrastructure.persistence.sprint.jpa.SprintBacklogJpaEntity;
-
+import com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintBackLog.SprintBackLogJpaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -25,24 +24,19 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class UserStoryJpaEntity extends BaseJpaEntity {
-    @Column(nullable = false)
-    private String title;
+    @Column(nullable = false) private String title;
 
-    @Column(nullable = false)
-    private String description;
+    @Column(nullable = false) private String description;
 
-    @Column(nullable = false)
-    private Integer priority;
+    @Column(nullable = false) private Integer priority;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StoryStatus status;
 
-    @Column(name = "story_points")
-    private Integer storyPoints;
+    @Column(name = "story_points") private Integer storyPoints;
 
-    @Column(name = "acceptance_criteria")
-    private String acceptanceCriteria;
+    @Column(name = "acceptance_criteria") private String acceptanceCriteria;
 
     // @ManyToOne
     // @JoinColumn(name = "epic_id")
@@ -54,6 +48,5 @@ public class UserStoryJpaEntity extends BaseJpaEntity {
 
     @ManyToOne
     @JoinColumn(name = "sprint_backlog_id")
-    private SprintBacklogJpaEntity sprintBacklog;
-
+    private SprintBackLogJpaEntity sprintBacklog;
 }

@@ -25,6 +25,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     @Override
     public @Nullable Authentication authenticate(Authentication authentication)
         throws AuthenticationFailureException {
+
         String email = authentication.getName();
         User u = userInfoUseCase.execute(email);
         String rawPassword = authentication.getCredentials().toString();

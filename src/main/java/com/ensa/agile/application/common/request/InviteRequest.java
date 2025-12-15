@@ -10,6 +10,5 @@ import lombok.RequiredArgsConstructor;
 @Data
 public class InviteRequest {
     @NotBlank private final String email;
-
     @NotBlank private final String productId;
 }

@@ -3,18 +3,18 @@ package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
+
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class ProductBackLogRepositoryAdapter
     implements ProductBackLogRepository {
   private final JpaProductBackLogRepository jpaProductBackLogRepository;
 
-  public ProductBackLogRepositoryAdapter(
-      JpaProductBackLogRepository jpaProductBackLogRepository) {
-    this.jpaProductBackLogRepository = jpaProductBackLogRepository;
-  }
 
   @Override
   public ProductBackLog save(ProductBackLog entity) {

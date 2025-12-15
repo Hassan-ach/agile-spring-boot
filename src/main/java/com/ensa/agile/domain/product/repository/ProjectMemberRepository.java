@@ -15,4 +15,13 @@ public interface ProjectMemberRepository
     boolean existsByUserIdAndProductBackLogIdAndRole(String userId,
                                                      String productBackLogId,
                                                      RoleType role);
+
+    boolean existsByUserEmailAndProductBackLogIdAndRole(String userEmail,
+                                                        String productBackLogId,
+                                                        RoleType role);
+    void deleteByUserEmailAndProductBackLogId(String userEmail,
+                                              String productBackLogId);
+
+    ProjectMember findByUserIdAndProductBackLogId(String userId,
+                                                  String productBackLogId);
 }
