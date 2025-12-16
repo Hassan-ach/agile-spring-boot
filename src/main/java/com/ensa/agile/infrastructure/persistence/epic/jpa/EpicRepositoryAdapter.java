@@ -25,7 +25,7 @@ public class EpicRepositoryAdapter implements EpicRepository {
     public Epic findById(String s) {
         return EpicJpaMapper.toDomainEntity(
             jpaEpicRepository.findById(s).orElseThrow(
-                () -> new EpicNotFoundException()));
+                    EpicNotFoundException::new));
     }
 
     @Override

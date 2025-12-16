@@ -7,6 +7,9 @@ import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaMapper;
 public class SprintBackLogJpaMapper {
     public static SprintBackLog
     toDomainEntity(SprintBackLogJpaEntity sprintBacklogJpaEntity) {
+        if (sprintBacklogJpaEntity == null) {
+            return null;
+        }
         return new SprintBackLog(
             sprintBacklogJpaEntity.getId(), sprintBacklogJpaEntity.getName(),
             ProductBackLogJpaMapper.toDomainEntity(
@@ -25,6 +28,9 @@ public class SprintBackLogJpaMapper {
 
     public static SprintBackLogJpaEntity
     toJpaEntity(SprintBackLog sprintBackLog) {
+        if (sprintBackLog == null) {
+            return null;
+        }
         return SprintBackLogJpaEntity.builder()
             .id(sprintBackLog.getId())
             .name(sprintBackLog.getName())

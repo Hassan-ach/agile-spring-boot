@@ -1,7 +1,5 @@
 package com.ensa.agile.application.epic.usecase;
 
-import org.springframework.stereotype.Component;
-
 import com.ensa.agile.application.epic.mapper.EpicResponseMapper;
 import com.ensa.agile.application.epic.request.EpicUpdateRequest;
 import com.ensa.agile.application.epic.response.EpicResponse;
@@ -9,6 +7,7 @@ import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.useCase.BaseUseCase;
 import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.epic.repository.EpicRepository;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UpdateEpicUseCase

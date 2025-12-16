@@ -5,10 +5,12 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 
 public class ProductBackLogResponseMapper {
 
-    public static ProductBackLogResponse tResponse(ProductBackLog productBackLog) {
-        return new ProductBackLogResponse(
-                productBackLog.getId(),
-                productBackLog.getName(),
-                productBackLog.getDescription());
+    public static ProductBackLogResponse
+    tResponse(ProductBackLog productBackLog) {
+        return ProductBackLogResponse.builder()
+            .id(productBackLog.getId())
+            .name(productBackLog.getName())
+            .description(productBackLog.getDescription())
+            .build();
     }
 }

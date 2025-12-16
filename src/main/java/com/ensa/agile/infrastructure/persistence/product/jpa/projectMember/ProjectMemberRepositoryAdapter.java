@@ -24,7 +24,7 @@ public class ProjectMemberRepositoryAdapter implements ProjectMemberRepository {
     public ProjectMember findById(String id) {
         return ProjectMemberJpaMapper.toDomainEntity(
             jpaProjectMemberRepository.findById(id).orElseThrow(
-                () -> new ProjectMemberNotFoundException()));
+                ProjectMemberNotFoundException::new));
     }
 
     @Override
@@ -92,6 +92,6 @@ public class ProjectMemberRepositoryAdapter implements ProjectMemberRepository {
         return ProjectMemberJpaMapper.toDomainEntity(
             jpaProjectMemberRepository
                 .findByUser_IdAndProductBackLog_Id(userId, productBackLogId)
-                .orElseThrow(() -> new ProjectMemberNotFoundException()));
+                .orElseThrow(ProjectMemberNotFoundException::new));
     }
 }

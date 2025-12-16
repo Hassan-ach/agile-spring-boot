@@ -24,7 +24,7 @@ public class UserRepositoryAdapter implements UserRepository {
     public User findByEmail(String email) {
         return jpaUserRepository.findByEmail(email)
             .map(UserJpaMapper::toDomainEntity)
-            .orElseThrow(() -> new UserNotFoundException());
+            .orElseThrow(UserNotFoundException::new);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class UserRepositoryAdapter implements UserRepository {
     public User findById(String id) {
         return jpaUserRepository.findById(id)
             .map(UserJpaMapper::toDomainEntity)
-            .orElseThrow(() -> new UserNotFoundException());
+            .orElseThrow(UserNotFoundException::new);
     }
 
     @Override

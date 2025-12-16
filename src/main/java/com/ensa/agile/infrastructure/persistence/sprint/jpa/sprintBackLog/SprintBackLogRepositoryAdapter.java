@@ -1,5 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintBackLog;
 
+import com.ensa.agile.application.sprint.exception.SprintBackLogNotFoundException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
 import com.ensa.agile.domain.sprint.repository.SprintBackLongRepository;
@@ -24,7 +25,7 @@ public class SprintBackLogRepositoryAdapter
     public SprintBackLog findById(String s) {
         return this.jpaSprintBackLogRepository.findById(s)
             .map(SprintBackLogJpaMapper::toDomainEntity)
-            .orElseThrow();
+            .orElseThrow(SprintBackLogNotFoundException::new);
     }
 
     @Override

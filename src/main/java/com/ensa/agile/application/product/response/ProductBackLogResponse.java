@@ -1,5 +1,8 @@
 package com.ensa.agile.application.product.response;
 
+import com.ensa.agile.application.epic.response.EpicResponse;
+import com.ensa.agile.application.story.response.UserStoryResponse;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,5 +18,7 @@ public class ProductBackLogResponse {
 
     private final String description;
 
+    private final List<EpicResponse> epics;
 
+    // private final List<UserStoryResponse> userStories;
 }

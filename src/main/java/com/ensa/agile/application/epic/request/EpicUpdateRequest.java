@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class EpicUpdateRequest {
     private String id;
+    private String productId;
     private final String title;
     private final String description;
 }

@@ -23,7 +23,7 @@ public class SprintMemberRepositoryAdapter implements SprintMembersRepository {
     public SprintMember findById(String s) {
         return this.jpaSprintMemberRepository.findById(s)
             .map(SprintMemberJpaMapper::toDomainEntity)
-            .orElseThrow(() -> new SprintMemberNotFoundException());
+            .orElseThrow(SprintMemberNotFoundException::new);
     }
 
     @Override
