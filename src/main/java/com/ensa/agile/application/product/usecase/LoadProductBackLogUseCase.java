@@ -8,19 +8,20 @@ import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetProductBackLogUseCase
+public class LoadProductBackLogUseCase
     extends BaseUseCase<String, ProductBackLogResponse> {
     private final ProductBackLogRepository productBackLogRepository;
 
-    public GetProductBackLogUseCase(
-        ITransactionalWrapper tr,
-        ProductBackLogRepository productBackLogRepository) {
+    public LoadProductBackLogUseCase(ITransactionalWrapper tr,
+                                     ProductBackLogRepository pr) {
         super(tr);
-        this.productBackLogRepository = productBackLogRepository;
+        this.productBackLogRepository = pr;
     }
 
+    @Override
     public ProductBackLogResponse execute(String id) {
-        return ProductBackLogResponseMapper.tResponse(
-            productBackLogRepository.findById(id));
+        return ProductBackLogResponseMapper.tLogResponse(
+            this.productBackLogRepository.findProductBackLogRowsById(id));
     }
+
 }

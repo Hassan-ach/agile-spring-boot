@@ -37,7 +37,7 @@ public class GetAllEpicsUseCase
 
         return epicRepository.findAllByProductBackLogId(productId)
             .stream()
-            .map(this::build)
+            .map(EpicResponseMapper::toResponse)
             .toList();
     }
 

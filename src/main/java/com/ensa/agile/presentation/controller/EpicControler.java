@@ -2,6 +2,7 @@ package com.ensa.agile.presentation.controller;
 
 import com.ensa.agile.application.common.response.DeleteResponse;
 import com.ensa.agile.application.epic.request.EpicCreateRequest;
+import com.ensa.agile.application.epic.request.EpicGetRequest;
 import com.ensa.agile.application.epic.request.EpicUpdateRequest;
 import com.ensa.agile.application.epic.response.EpicResponse;
 import com.ensa.agile.application.epic.usecase.CreateEpicUseCase;
@@ -40,12 +41,15 @@ public class EpicControler {
             .body(createEpicUseCase.executeTransactionally(request));
     }
 
-
     @GetMapping("/{epicId}")
     public ResponseEntity<EpicResponse>
-    getEpicById(@PathVariable String epicId) {
+    getEpicById(@PathVariable String epicId, @PathVariable String productId) {
         return ResponseEntity.status(HttpStatus.OK)
-            .body(getEpicUseCase.execute(epicId));
+            .body(
+                getEpicUseCase.executeTransactionally(EpicGetRequest.builder()
+                                                          .epicId(epicId)
+                                                          .productId(productId)
+                                                          .build()));
     }
 
     @PatchMapping("/{epicId}")

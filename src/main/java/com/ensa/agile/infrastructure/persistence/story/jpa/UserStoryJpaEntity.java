@@ -1,7 +1,5 @@
 package com.ensa.agile.infrastructure.persistence.story.jpa;
 
-import com.ensa.agile.domain.epic.entity.Epic;
-import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.story.enums.StoryStatus;
 import com.ensa.agile.infrastructure.persistence.epic.jpa.EpicJpaEntity;
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
