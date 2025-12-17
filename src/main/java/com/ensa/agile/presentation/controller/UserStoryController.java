@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/{productId}/user-story")
-public class UserStoryControler {
+public class UserStoryController {
 
     private final CreateUserStoryUseCase createUserStoryUseCase;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<UserStoryResponse>
     createUserStory(@Valid @RequestBody UserStoryCreateRequest request,
                     @PathVariable String productId) {
 
-        request.setProductId(productId);
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(createUserStoryUseCase.executeTransactionally(request));
+            .body(createUserStoryUseCase.execute(
+                new UserStoryCreateRequest(productId, request)));
     }
 }

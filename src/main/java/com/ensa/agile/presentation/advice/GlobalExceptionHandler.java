@@ -85,7 +85,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>>
     handleUncaughtRuntimeException(RuntimeException ex) {
 
-        return buildErrorResponse("A critical system error occurred.",
-                                  HttpStatus.INTERNAL_SERVER_ERROR);
+        Map<String, String> error = new HashMap<>();
+        error.put("error", "A critical system error occurred.");
+        error.put("details", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(error);
     }
 }

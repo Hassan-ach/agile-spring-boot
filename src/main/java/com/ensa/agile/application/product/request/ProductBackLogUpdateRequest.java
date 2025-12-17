@@ -14,4 +14,11 @@ public class ProductBackLogUpdateRequest {
     private final String name;
 
     private final String description;
+
+    public ProductBackLogUpdateRequest(String id,
+                                       ProductBackLogUpdateRequest req) {
+        this.id = id;
+        this.name = req.getName();
+        this.description = req.getDescription();
+    }
 }

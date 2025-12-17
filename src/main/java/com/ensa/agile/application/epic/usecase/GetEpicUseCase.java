@@ -1,7 +1,7 @@
 package com.ensa.agile.application.epic.usecase;
 
 import com.ensa.agile.application.epic.mapper.EpicResponseMapper;
-import com.ensa.agile.application.epic.request.EpicGetRequest;
+import com.ensa.agile.application.epic.request.EpicRequest;
 import com.ensa.agile.application.epic.response.EpicResponse;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.useCase.BaseUseCase;
@@ -14,7 +14,7 @@ import com.ensa.agile.domain.story.repository.UserStoryRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class GetEpicUseCase extends BaseUseCase<EpicGetRequest, EpicResponse> {
+public class GetEpicUseCase extends BaseUseCase<EpicRequest, EpicResponse> {
     private final EpicRepository epicRepository;
     private final UserStoryRepository userStoryRepository;
     private final ProductBackLogRepository productBackLogRepository;
@@ -30,7 +30,7 @@ public class GetEpicUseCase extends BaseUseCase<EpicGetRequest, EpicResponse> {
     }
 
     @Override
-    public EpicResponse execute(EpicGetRequest req) {
+    public EpicResponse execute(EpicRequest req) {
         if (!this.productBackLogRepository.existsById(req.getProductId())) {
             throw new ProductBackLogNotFoundException();
         }

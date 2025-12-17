@@ -11,4 +11,9 @@ import lombok.Data;
 public class InviteRequest {
     @NotBlank private final String email;
     private String productId;
+
+    public InviteRequest(String productId, InviteRequest req) {
+        this.productId = productId;
+        this.email = req.getEmail();
+    }
 }

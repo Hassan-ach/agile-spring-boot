@@ -46,7 +46,7 @@ public class CreateProductBackLogUseCase
         User u = currentUserService.getCurrentUser();
         ProjectMember pm = ProjectMember.builder()
                                .user(u)
-                               .productBackLog(pb)
+                               .productBackLog(pbSaved)
                                .role(RoleType.PRODUCT_OWNER)
                                .status(MemberStatus.ACTIVE)
                                .build();

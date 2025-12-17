@@ -11,4 +11,9 @@ import lombok.Data;
 public class RemoveRequest {
     @NotBlank private final String email;
     private String productId;
+
+    public RemoveRequest(String productId, RemoveRequest req) {
+        this.productId = productId;
+        this.email = req.getEmail();
+    }
 }

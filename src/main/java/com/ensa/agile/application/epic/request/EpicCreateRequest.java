@@ -4,15 +4,23 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 public class EpicCreateRequest {
 
-    @NotBlank private final String title;
+    @NotBlank private String title;
 
-    @NotBlank private final String description;
+    @NotBlank private String description;
 
     private String productId;
+
+    public EpicCreateRequest(String productId, EpicCreateRequest req) {
+        this.productId = productId;
+        this.title = req.getTitle();
+        this.description = req.getDescription();
+    }
 }

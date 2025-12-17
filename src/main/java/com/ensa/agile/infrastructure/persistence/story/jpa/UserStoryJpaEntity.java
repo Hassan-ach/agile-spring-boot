@@ -40,13 +40,15 @@ public class UserStoryJpaEntity extends BaseJpaEntity {
 
     @Column(name = "acceptance_criteria") private String acceptanceCriteria;
 
-    @ManyToOne @JoinColumn(name = "epic_id") private EpicJpaEntity epic;
+    @ManyToOne
+    @JoinColumn(name = "epic_id", nullable = true)
+    private EpicJpaEntity epic;
 
     @ManyToOne
     @JoinColumn(name = "product_backlog_id", nullable = false)
     private ProductBackLogJpaEntity productBackLog;
 
     @ManyToOne
-    @JoinColumn(name = "sprint_backlog_id")
-    private SprintBackLogJpaEntity sprintBacklog;
+    @JoinColumn(name = "sprint_backlog_id", nullable = true)
+    private SprintBackLogJpaEntity sprintBackLog;
 }

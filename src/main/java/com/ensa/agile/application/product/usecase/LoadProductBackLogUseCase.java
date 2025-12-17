@@ -23,5 +23,4 @@ public class LoadProductBackLogUseCase
         return ProductBackLogResponseMapper.tLogResponse(
             this.productBackLogRepository.findProductBackLogRowsById(id));
     }
-
 }

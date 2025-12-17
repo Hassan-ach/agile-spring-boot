@@ -7,7 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 @Data
-public class EpicGetRequest {
+public class EpicRequest {
     String epicId;
     String productId;
 }

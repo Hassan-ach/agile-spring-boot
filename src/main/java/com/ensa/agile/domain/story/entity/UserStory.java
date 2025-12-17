@@ -8,9 +8,11 @@ import com.ensa.agile.domain.story.enums.StoryStatus;
 import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder
 @Getter
+@Setter
 public class UserStory extends BaseDomainEntity {
 
     private final String title;
@@ -23,11 +25,11 @@ public class UserStory extends BaseDomainEntity {
     private final Integer storyPoints;
     private final String acceptanceCriteria;
 
-    private final Epic epic;
+    private Epic epic;
 
     private final ProductBackLog productBackLog;
 
-    private final SprintBackLog sprintBackLog;
+    private SprintBackLog sprintBackLog;
 
     public UserStory(String title, String description, Integer priority,
                      StoryStatus status, Integer storyPoints,
@@ -44,6 +46,20 @@ public class UserStory extends BaseDomainEntity {
         this.epic = epic;
         this.productBackLog = productBackLog;
         this.sprintBackLog = sprintBackLog;
+    }
+    public UserStory(String id, String title, String description,
+                     Integer priority, StoryStatus status, Integer storyPoints,
+                     String acceptanceCriteria, ProductBackLog productBackLog,
+                     LocalDateTime createdDate, String createdBy,
+                     LocalDateTime lastModifiedDate, String lastModifiedBy) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+        this.storyPoints = storyPoints;
+        this.acceptanceCriteria = acceptanceCriteria;
+        this.productBackLog = productBackLog;
     }
 
     public UserStory(String id, String title, String description,

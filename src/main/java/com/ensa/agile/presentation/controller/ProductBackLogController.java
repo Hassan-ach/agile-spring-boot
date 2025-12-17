@@ -10,6 +10,7 @@ import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.application.product.usecase.CreateProductBackLogUseCase;
 import com.ensa.agile.application.product.usecase.GetProductBackLogUseCase;
 import com.ensa.agile.application.product.usecase.InviteScrumMasterUseCase;
+import com.ensa.agile.application.product.usecase.LoadProductBackLogUseCase;
 import com.ensa.agile.application.product.usecase.RemoveScrumMasterUseCase;
 import com.ensa.agile.application.product.usecase.UpdateProductBackLogInfoUseCase;
 import jakarta.validation.Valid;
@@ -28,15 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/product-backlog")
-public class ProductBackLogControler {
+public class ProductBackLogController {
 
     private final CreateProductBackLogUseCase createProductBacklogUseCase;
     private final UpdateProductBackLogInfoUseCase updateProductBackLogUseCase;
     private final InviteScrumMasterUseCase inviteScrumMasterUseCase;
     private final RemoveScrumMasterUseCase removeScrumMasterUseCase;
     private final GetProductBackLogUseCase getProductBackLogUseCase;
+    private final LoadProductBackLogUseCase loadProductBackLogUseCase;
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<ProductBackLogResponse> createProductBacklog(
         @Valid @RequestBody ProductBackLogCreateRequest request) {
 
@@ -47,8 +49,17 @@ public class ProductBackLogControler {
     @GetMapping("/{id}")
     public ResponseEntity<ProductBackLogResponse>
     getProductBacklogById(@PathVariable String id) {
+
         return ResponseEntity.status(HttpStatus.OK)
             .body(getProductBackLogUseCase.execute(id));
+    }
+
+    @GetMapping("/load/{id}")
+    public ResponseEntity<ProductBackLogResponse>
+    loadProductBacklogById(@PathVariable String id) {
+
+        return ResponseEntity.status(HttpStatus.OK)
+            .body(loadProductBackLogUseCase.executeTransactionally(id));
     }
 
     @PatchMapping("/{id}")
@@ -57,9 +68,9 @@ public class ProductBackLogControler {
         @PathVariable String id,
         @Valid @RequestBody ProductBackLogUpdateRequest request) {
 
-        request.setId(id);
         return ResponseEntity.status(HttpStatus.OK)
-            .body(updateProductBackLogUseCase.executeTransactionally(request));
+            .body(updateProductBackLogUseCase.executeTransactionally(
+                new ProductBackLogUpdateRequest(id, request)));
     }
 
     @PostMapping("/{id}/invite/scrum-master")
@@ -67,9 +78,9 @@ public class ProductBackLogControler {
     inviteScrumMaster(@Valid @RequestBody InviteRequest request,
                       @PathVariable String id) {
 
-        request.setProductId(id);
         return ResponseEntity.status(HttpStatus.CREATED)
-            .body(inviteScrumMasterUseCase.executeTransactionally(request));
+            .body(inviteScrumMasterUseCase.executeTransactionally(
+                new InviteRequest(id, request)));
     }
 
     @PostMapping("/{id}/remove/scrum-master")
@@ -77,8 +88,8 @@ public class ProductBackLogControler {
     removeScrumeMaster(@Valid @RequestBody RemoveRequest request,
                        @PathVariable String id) {
 
-        request.setProductId(id);
         return ResponseEntity.status(HttpStatus.OK)
-            .body(removeScrumMasterUseCase.executeTransactionally(request));
+            .body(removeScrumMasterUseCase.executeTransactionally(
+                new RemoveRequest(id, request)));
     }
 }
