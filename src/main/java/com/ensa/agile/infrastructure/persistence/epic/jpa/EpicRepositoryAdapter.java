@@ -4,10 +4,8 @@ import com.ensa.agile.application.epic.exception.EpicNotFoundException;
 import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.epic.repository.EpicRepository;
 import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
@@ -25,7 +23,7 @@ public class EpicRepositoryAdapter implements EpicRepository {
     public Epic findById(String s) {
         return EpicJpaMapper.toDomainEntity(
             jpaEpicRepository.findById(s).orElseThrow(
-                    EpicNotFoundException::new));
+                EpicNotFoundException::new));
     }
 
     @Override
@@ -44,5 +42,13 @@ public class EpicRepositoryAdapter implements EpicRepository {
     @Override
     public boolean existsById(String s) {
         return jpaEpicRepository.existsById(s);
+    }
+
+    @Override
+    public List<Epic> findAllByProductBackLogId(String projectId) {
+        return jpaEpicRepository.findAllByProductBackLog_Id(projectId)
+            .stream()
+            .map(EpicJpaMapper::toDomainEntity)
+            .toList();
     }
 }

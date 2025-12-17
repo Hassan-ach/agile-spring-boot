@@ -18,7 +18,7 @@ public class ProductBackLogResponse {
 
     private final String description;
 
-    private final List<EpicResponse> epics;
+    private List<EpicResponse> epics;
 
-    // private final List<UserStoryResponse> userStories;
+    private List<UserStoryResponse> userStories;
 }

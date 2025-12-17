@@ -24,8 +24,7 @@ public class UserStoryRepositoryAdapter implements UserStoryRepository {
     public UserStory findById(String s) {
         return UserStoryJpaMapper.toDomainEntity(
             this.jpaUserStoryRepository.findById(s).orElseThrow(
-                    UserStoryNotFounException::new
-            ));
+                UserStoryNotFounException::new));
     }
 
     @Override
@@ -44,5 +43,13 @@ public class UserStoryRepositoryAdapter implements UserStoryRepository {
     @Override
     public boolean existsById(String s) {
         return this.jpaUserStoryRepository.existsById(s);
+    }
+
+    @Override
+    public List<UserStory> findAllByEpicId(String epicId) {
+        return this.jpaUserStoryRepository.findAllByEpic_Id(epicId)
+            .stream()
+            .map(UserStoryJpaMapper::toDomainEntity)
+            .toList();
     }
 }

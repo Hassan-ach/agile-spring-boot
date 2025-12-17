@@ -16,5 +16,5 @@ public class EpicResponse {
 
     private final String description;
 
-    private final List<UserStoryResponse> userStories;
+    private List<UserStoryResponse> userStories;
 }

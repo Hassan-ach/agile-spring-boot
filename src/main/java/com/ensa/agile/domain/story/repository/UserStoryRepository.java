@@ -2,6 +2,9 @@ package com.ensa.agile.domain.story.repository;
 
 import com.ensa.agile.domain.global.repository.BaseDomainRepository;
 import com.ensa.agile.domain.story.entity.UserStory;
+import java.util.List;
 
 public interface UserStoryRepository
-    extends BaseDomainRepository<UserStory, String> {}
+    extends BaseDomainRepository<UserStory, String> {
+    List<UserStory> findAllByEpicId(String epicId);
+}
