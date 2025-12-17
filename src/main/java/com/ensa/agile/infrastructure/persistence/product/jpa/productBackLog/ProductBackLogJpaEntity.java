@@ -18,22 +18,31 @@ import lombok.experimental.SuperBuilder;
 
 @Entity
 @NamedNativeQuery(name = "loadProductBackLogRowsById", query = """
-        SELECT
-        p.id as backlogId, p.name as backlogName, p.description as backlogDescription,
+    SELECT 
+    p.id AS backlogId, p.name AS backlogName, p.description AS backlogDescription,
+    e.id AS epicId, e.title AS epicTitle, e.description AS epicDescription,
+    u.id AS storyId, u.title AS storyTitle, u.description AS storyDescription,
+    u.status AS status, u.priority AS priority, u.story_points AS storyPoints,
+    u.acceptance_criteria AS acceptanceCriteria
+FROM product_backlogs p
+INNER JOIN epics e ON e.product_backlog_id = p.id
+LEFT JOIN user_stories u ON u.epic_id = e.id
+WHERE p.id = :id
 
-        e.id as epicId, e.title as epicTitle, e.description as epicDescription,
+UNION ALL
 
-        u.id as storyId, u.title as storyTitle, u.description as storyDescription,
-        u.status as status, u.priority as priority, u.story_points as storyPoints,
-        u.acceptance_criteria as acceptanceCriteria
-
-        FROM product_backlogs p
-        LEFT JOIN epics e ON e.product_backlog_id = p.id
-        LEFT JOIN user_stories u ON u.epic_id = e.id
-            OR (u.epic_id IS NULL AND u.product_backlog_id = p.id)
-        WHERE p.id = :id
+SELECT 
+    p.id AS backlogId, p.name AS backlogName, p.description AS backlogDescription,
+    NULL AS epicId, NULL AS epicTitle, NULL AS epicDescription,
+    u.id AS storyId, u.title AS storyTitle, u.description AS storyDescription,
+    u.status AS status, u.priority AS priority, u.story_points AS storyPoints,
+    u.acceptance_criteria AS acceptanceCriteria
+FROM product_backlogs p
+INNER JOIN user_stories u ON u.product_backlog_id = p.id
+WHERE p.id = :id AND u.epic_id IS NULL
         """,
                   resultSetMapping = "ProductBackLogRowMapping")
+
 @SqlResultSetMapping(
     name = "ProductBackLogRowMapping",
     classes = @ConstructorResult(

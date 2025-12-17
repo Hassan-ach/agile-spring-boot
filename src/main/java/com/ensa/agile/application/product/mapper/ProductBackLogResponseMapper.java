@@ -60,6 +60,18 @@ public class ProductBackLogResponseMapper {
         List<UserStoryResponse> userStories = new ArrayList<>();
 
         for (ProductBackLogRow row : rows) {
+            if (row.getEpicId() != null) {
+                epics.computeIfAbsent(
+                    row.getEpicId(),
+                    id
+                    -> EpicResponse.builder()
+                           .id(id)
+                           .title(row.getEpicTitle())
+                           .description(row.getEpicDescription())
+                           .userStories(new ArrayList<>())
+                           .build());
+            }
+
             if (row.getStoryId() == null)
                 continue;
 
@@ -77,18 +89,7 @@ public class ProductBackLogResponseMapper {
             if (row.getEpicId() == null) {
                 userStories.add(us);
             } else {
-
-                EpicResponse epic = epics.computeIfAbsent(
-                    row.getEpicId(),
-                    id
-                    -> EpicResponse.builder()
-                           .id(id)
-                           .title(row.getEpicTitle())
-                           .description(row.getEpicDescription())
-                           .userStories(new ArrayList<>())
-                           .build());
-
-                epic.getUserStories().add(us);
+                epics.get(row.getEpicId()).getUserStories().add(us);
             }
         }
 
