@@ -1,4 +1,4 @@
-- [ ] implement Load use cases for Epic
+- [x] implement Load use cases for Epic
 - [ ] implement Load use cases for User Story
 - [ ] implement CRUD use cases for Sprint Backlog
 - [ ] implement Load use cases for Sprint Backlog

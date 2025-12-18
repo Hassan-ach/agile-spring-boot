@@ -3,6 +3,7 @@ package com.ensa.agile.infrastructure.persistence.epic.jpa;
 import com.ensa.agile.application.epic.exception.EpicNotFoundException;
 import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.epic.repository.EpicRepository;
+import com.ensa.agile.domain.epic.row.EpicRow;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -50,5 +51,10 @@ public class EpicRepositoryAdapter implements EpicRepository {
             .stream()
             .map(EpicJpaMapper::toDomainEntity)
             .toList();
+    }
+
+    @Override
+    public List<EpicRow> loadEpicRowsById(String id) {
+        return this.jpaEpicRepository.loadEpicRowsById(id);
     }
 }

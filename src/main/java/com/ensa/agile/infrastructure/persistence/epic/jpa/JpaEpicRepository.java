@@ -1,11 +1,34 @@
 package com.ensa.agile.infrastructure.persistence.epic.jpa;
 
 import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import com.ensa.agile.domain.epic.row.EpicRow;
 
 @Repository
 public interface JpaEpicRepository
     extends JpaRepository<EpicJpaEntity, String> {
     List<EpicJpaEntity> findAllByProductBackLog_Id(String projectId);
+
+    @Query("""
+    SELECT new com.ensa.agile.domain.epic.row.EpicRow(
+        e.id,
+        e.title,
+        e.description,
+
+        u.id,
+        u.title,
+        u.description,
+        u.status,
+        u.priority,
+        u.storyPoints,
+        u.acceptanceCriteria
+    )
+    FROM EpicJpaEntity e
+    LEFT JOIN UserStoryJpaEntity u ON u.epic.id = e.id
+    WHERE e.id = ?1
+    """) List<EpicRow> loadEpicRowsById(String id);
 }

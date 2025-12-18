@@ -15,6 +15,7 @@ public class GetProductBackLogUseCase
     public GetProductBackLogUseCase(
         ITransactionalWrapper tr,
         ProductBackLogRepository productBackLogRepository) {
+
         super(tr);
         this.productBackLogRepository = productBackLogRepository;
     }

@@ -42,7 +42,7 @@ public class ProductBackLogResponseMapper {
     }
 
     public static ProductBackLogResponse
-    tLogResponse(List<ProductBackLogRow> rows) {
+    toResponse(List<ProductBackLogRow> rows) {
         if (rows == null || rows.isEmpty()) {
             return ProductBackLogResponse.builder().build();
         }

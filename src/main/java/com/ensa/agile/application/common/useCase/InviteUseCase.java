@@ -6,7 +6,6 @@ import com.ensa.agile.application.global.service.ICurrentUser;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.useCase.BaseUseCase;
 import com.ensa.agile.application.product.exception.UserAlreadyInvitedException;
-import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.product.entity.ProjectMember;
 import com.ensa.agile.domain.product.enums.RoleType;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
@@ -58,15 +57,15 @@ public abstract class InviteUseCase
         }
 
         User u = userRepository.findByEmail(data.getEmail());
-        ProductBackLog pb =
-            productBackLogRepository.findById(data.getProductId());
 
-        ProjectMember invitation = ProjectMember.builder()
-                                       .user(u)
-                                       .productBackLog(pb)
-                                       .role(roleType)
-                                       .build();
-        ProjectMember invitedSaved = projectMemberRepository.save(invitation);
+        ProjectMember invitedSaved = projectMemberRepository.save(
+            ProjectMember.builder()
+                .user(u)
+                .productBackLog(
+                    productBackLogRepository.findById(data.getProductId()))
+                .role(roleType)
+                .build());
+
         return InviteResponse.builder()
             .message("User " + u.getEmail() + " invited successfully as " +
                      roleType)

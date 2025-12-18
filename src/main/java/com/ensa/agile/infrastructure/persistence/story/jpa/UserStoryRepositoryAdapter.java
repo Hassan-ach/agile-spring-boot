@@ -1,8 +1,10 @@
 package com.ensa.agile.infrastructure.persistence.story.jpa;
 
 import com.ensa.agile.application.story.exception.UserStoryNotFounException;
+import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import com.ensa.agile.domain.story.repository.UserStoryRepository;
+import com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintBackLog.SprintBackLogJpaMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -51,5 +53,20 @@ public class UserStoryRepositoryAdapter implements UserStoryRepository {
             .stream()
             .map(UserStoryJpaMapper::toDomainEntity)
             .toList();
+    }
+
+    @Override
+    public List<UserStory> findByBatch(List<String> ids) {
+        return this.jpaUserStoryRepository.findByBatch(ids)
+            .stream()
+            .map(UserStoryJpaMapper::toDomainEntity)
+            .toList();
+    }
+
+    @Override
+    public void assignToSprint(List<String> userStoryIds,
+                               SprintBackLog sprintBackLog) {
+        this.jpaUserStoryRepository.assignToSprint(
+            userStoryIds, SprintBackLogJpaMapper.toJpaEntity(sprintBackLog));
     }
 }

@@ -3,7 +3,6 @@ package com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintMembers;
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
 import com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintBackLog.SprintBackLogJpaEntity;
 import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaEntity;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
