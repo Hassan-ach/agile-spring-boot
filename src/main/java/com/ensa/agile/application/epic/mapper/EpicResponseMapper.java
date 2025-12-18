@@ -51,7 +51,7 @@ public class EpicResponseMapper {
                     .title(row.getStoryTitle())
                     .description(row.getStoryDescription())
                     .priority(row.getPriority())
-                    .status(row.getStatus())
+                    .status(row.getStatus().toString())
                     .storyPoints(row.getStoryPoints())
                     .acceptanceCriteria(row.getAcceptanceCriteria())
                     .build());
