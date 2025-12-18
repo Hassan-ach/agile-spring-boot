@@ -16,20 +16,20 @@ public class CreateEpicUseCase
     extends BaseUseCase<EpicCreateRequest, EpicResponse> {
 
     private final EpicRepository epicRepository;
-    private final ProductBackLogRepository prosuctBackLogRepository;
+    private final ProductBackLogRepository productBackLogRepository;
 
     public CreateEpicUseCase(ITransactionalWrapper tr, EpicRepository ep,
                              ProductBackLogRepository pb) {
 
         super(tr);
         this.epicRepository = ep;
-        this.prosuctBackLogRepository = pb;
+        this.productBackLogRepository = pb;
     }
 
     @Override
     public EpicResponse execute(EpicCreateRequest request) {
         ProductBackLog pr =
-            prosuctBackLogRepository.findById(request.getProductId());
+            productBackLogRepository.findById(request.getProductId());
 
         Epic epic = Epic.builder()
                         .title(request.getTitle())
