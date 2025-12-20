@@ -1,7 +1,7 @@
 package com.ensa.agile.infrastructure.security.config;
 
-import com.ensa.agile.infrastructure.security.fillter.FilterChainExceptionHanlder;
-import com.ensa.agile.infrastructure.security.fillter.JwtFilter;
+import com.ensa.agile.infrastructure.security.filter.FilterChainExceptionHanlder;
+import com.ensa.agile.infrastructure.security.filter.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

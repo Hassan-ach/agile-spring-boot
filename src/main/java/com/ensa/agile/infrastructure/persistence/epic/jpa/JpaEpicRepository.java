@@ -1,12 +1,9 @@
 package com.ensa.agile.infrastructure.persistence.epic.jpa;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-
-import com.ensa.agile.domain.epic.row.EpicRow;
 
 @Repository
 public interface JpaEpicRepository
@@ -14,7 +11,7 @@ public interface JpaEpicRepository
     List<EpicJpaEntity> findAllByProductBackLog_Id(String projectId);
 
     @Query("""
-    SELECT new com.ensa.agile.domain.epic.row.EpicRow(
+    SELECT new com.ensa.agile.infrastructure.persistence.epic.jpa.EpicRow(
         e.id,
         e.title,
         e.description,

@@ -2,7 +2,10 @@ package com.ensa.agile.domain.epic.entity;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
+import com.ensa.agile.domain.story.entity.UserStory;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,12 +21,43 @@ public class Epic extends BaseDomainEntity {
 
     private ProductBackLog productBackLog;
 
+    private List<UserStory> userStories;
+
     public Epic(String title, String description,
                 ProductBackLog productBackLog) {
         super(null);
         this.title = title;
         this.description = description;
         this.productBackLog = productBackLog;
+        this.userStories = new ArrayList<>();
+    }
+
+    public Epic(String id, String title, String description) {
+        super(id);
+        this.title = title;
+        this.description = description;
+        this.productBackLog = null;
+        this.userStories = new ArrayList<>();
+    }
+
+    public Epic(String title, String description, ProductBackLog productBackLog,
+                List<UserStory> userStories) {
+        super(null);
+        this.title = title;
+        this.description = description;
+        this.productBackLog = productBackLog;
+        this.userStories = userStories;
+    }
+
+    public Epic(String id, String title, String description,
+                ProductBackLog productBackLog, List<UserStory> userStories,
+                LocalDateTime createdDate, String createdBy,
+                LocalDateTime lastModifiedDate, String lastModifiedBy) {
+        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
+        this.title = title;
+        this.description = description;
+        this.productBackLog = productBackLog;
+        this.userStories = userStories;
     }
 
     public Epic(String id, String title, String description,
@@ -34,5 +68,6 @@ public class Epic extends BaseDomainEntity {
         this.title = title;
         this.description = description;
         this.productBackLog = productBackLog;
+        this.userStories = new ArrayList<>();
     }
 }

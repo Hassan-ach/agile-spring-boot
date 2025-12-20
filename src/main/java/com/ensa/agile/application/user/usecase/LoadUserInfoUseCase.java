@@ -1,7 +1,7 @@
 package com.ensa.agile.application.user.usecase;
 
-import com.ensa.agile.application.global.useCase.BaseUseCase;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.domain.user.entity.User;
 import com.ensa.agile.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.ensa.agile.domain.epic.row;
+package com.ensa.agile.infrastructure.persistence.epic.jpa;
 
 import com.ensa.agile.domain.story.enums.StoryStatus;
 import lombok.AllArgsConstructor;

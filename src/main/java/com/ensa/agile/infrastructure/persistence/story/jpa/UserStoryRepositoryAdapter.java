@@ -1,6 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.story.jpa;
 
-import com.ensa.agile.application.story.exception.UserStoryNotFounException;
+import com.ensa.agile.application.story.exception.UserStoryNotFoundException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import com.ensa.agile.domain.story.repository.UserStoryRepository;
@@ -26,7 +26,7 @@ public class UserStoryRepositoryAdapter implements UserStoryRepository {
     public UserStory findById(String s) {
         return UserStoryJpaMapper.toDomainEntity(
             this.jpaUserStoryRepository.findById(s).orElseThrow(
-                UserStoryNotFounException::new));
+                UserStoryNotFoundException::new));
     }
 
     @Override

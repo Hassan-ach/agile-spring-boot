@@ -6,7 +6,7 @@ import com.ensa.agile.domain.product.entity.ProjectMember;
 import com.ensa.agile.domain.product.enums.RoleType;
 import com.ensa.agile.domain.product.repository.ProjectMemberRepository;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
-import com.ensa.agile.domain.sprint.repository.SprintBackLongRepository;
+import com.ensa.agile.domain.sprint.repository.SprintBackLogRepository;
 import com.ensa.agile.domain.sprint.repository.SprintMembersRepository;
 import com.ensa.agile.domain.user.entity.User;
 import java.util.Arrays;
@@ -20,7 +20,7 @@ public class AbacService implements IAbacService {
     private final ICurrentUser currentUserService;
     private final ProjectMemberRepository projectMemberRepository;
     private final SprintMembersRepository sprintMembersRepository;
-    private final SprintBackLongRepository sprintBackLongRepository;
+    private final SprintBackLogRepository sprintBackLogRepository;
 
     public boolean canAccessProject(String projectId, String action) {
 
@@ -42,7 +42,7 @@ public class AbacService implements IAbacService {
     }
 
     private boolean isSprintHasStatus(String id, SprintStatus status) {
-        return sprintBackLongRepository.existsByStatus(status);
+        return sprintBackLogRepository.existsByStatus(status);
     }
 
     private boolean isSprintMember(String sprintId) {

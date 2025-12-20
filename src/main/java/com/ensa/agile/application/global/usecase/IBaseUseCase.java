@@ -1,4 +1,4 @@
-package com.ensa.agile.application.global.useCase;
+package com.ensa.agile.application.global.usecase;
 
 public interface IBaseUseCase<T, D> {
 

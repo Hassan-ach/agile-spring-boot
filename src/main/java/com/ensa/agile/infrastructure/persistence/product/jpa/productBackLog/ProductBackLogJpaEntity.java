@@ -1,7 +1,9 @@
 package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 
-import com.ensa.agile.domain.product.row.ProductBackLogRow;
+import java.time.LocalDateTime;
+
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.ColumnResult;
 import jakarta.persistence.ConstructorResult;
@@ -9,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.NamedNativeQuery;
 import jakarta.persistence.SqlResultSetMapping;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

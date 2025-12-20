@@ -3,7 +3,7 @@ package com.ensa.agile.application.common.useCase;
 import com.ensa.agile.application.common.request.RemoveRequest;
 import com.ensa.agile.application.common.response.RemoveResponse;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
-import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.application.user.exception.UserNotFoundException;
 import com.ensa.agile.domain.product.enums.RoleType;
 import com.ensa.agile.domain.product.repository.ProjectMemberRepository;

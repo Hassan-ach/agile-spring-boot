@@ -1,4 +1,4 @@
-package com.ensa.agile.infrastructure.security.fillter;
+package com.ensa.agile.infrastructure.security.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

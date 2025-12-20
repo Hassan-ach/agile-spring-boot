@@ -3,15 +3,14 @@ package com.ensa.agile.infrastructure.persistence.sprint.jpa.sprintBackLog;
 import com.ensa.agile.application.sprint.exception.SprintBackLogNotFoundException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
-import com.ensa.agile.domain.sprint.repository.SprintBackLongRepository;
+import com.ensa.agile.domain.sprint.repository.SprintBackLogRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 @RequiredArgsConstructor
 @Repository
-public class SprintBackLogRepositoryAdapter
-    implements SprintBackLongRepository {
+public class SprintBackLogRepositoryAdapter implements SprintBackLogRepository {
     private final JpaSprintBackLogRepository jpaSprintBackLogRepository;
 
     @Override

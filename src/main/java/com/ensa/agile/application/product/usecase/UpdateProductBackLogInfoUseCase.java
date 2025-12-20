@@ -2,7 +2,7 @@
 package com.ensa.agile.application.product.usecase;
 
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
-import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.application.product.mapper.ProductBackLogResponseMapper;
 import com.ensa.agile.application.product.request.ProductBackLogUpdateRequest;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;

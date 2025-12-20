@@ -1,7 +1,10 @@
 package com.ensa.agile.application.user.usecase;
 
-import com.ensa.agile.application.global.useCase.BaseUseCase;
+import org.springframework.stereotype.Component;
+
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
+import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
 import com.ensa.agile.application.user.mapper.AuthenticationResponseMapper;
 import com.ensa.agile.application.user.mapper.RegisterRequestMapper;
 import com.ensa.agile.application.user.request.RegisterRequest;
@@ -9,9 +12,7 @@ import com.ensa.agile.application.user.response.AuthenticationResponse;
 import com.ensa.agile.application.user.security.IAuthenticationService;
 import com.ensa.agile.application.user.security.IPasswordEncoder;
 import com.ensa.agile.domain.user.entity.User;
-import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
 import com.ensa.agile.domain.user.repository.UserRepository;
-import org.springframework.stereotype.Component;
 
 @Component
 public class RegisterUseCase

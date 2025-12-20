@@ -27,7 +27,7 @@ public class UserStory extends BaseDomainEntity {
 
     private Epic epic;
 
-    private final ProductBackLog productBackLog;
+    private ProductBackLog productBackLog;
 
     private SprintBackLog sprintBackLog;
 
@@ -60,6 +60,17 @@ public class UserStory extends BaseDomainEntity {
         this.storyPoints = storyPoints;
         this.acceptanceCriteria = acceptanceCriteria;
         this.productBackLog = productBackLog;
+    }
+    public UserStory(String id, String title, String description,
+                     Integer priority, StoryStatus status, Integer storyPoints,
+                     String acceptanceCriteria) {
+        super(null);
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.status = status;
+        this.storyPoints = storyPoints;
+        this.acceptanceCriteria = acceptanceCriteria;
     }
 
     public UserStory(String id, String title, String description,

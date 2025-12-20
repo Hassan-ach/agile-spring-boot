@@ -3,7 +3,6 @@ package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
-import com.ensa.agile.domain.product.row.ProductBackLogRow;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -47,8 +46,9 @@ public class ProductBackLogRepositoryAdapter
     }
 
     @Override
-    public List<ProductBackLogRow> findProductBackLogRowsById(String id) {
+    public ProductBackLog findProductBackLogRowsById(String id) {
 
-        return this.jpaProductBackLogRepository.findProductBackLogRowsById(id);
+        return ProductBackLogJpaMapper.toDomainEntity(
+            this.jpaProductBackLogRepository.findProductBackLogRowsById(id));
     }
 }

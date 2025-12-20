@@ -1,4 +1,4 @@
-package com.ensa.agile.domain.product.row;
+package com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

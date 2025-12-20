@@ -1,7 +1,7 @@
 package com.ensa.agile.application.story.usecase;
 
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
-import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.application.story.mapper.UserStoryResponseMapper;
 import com.ensa.agile.application.story.request.UserStoryCreateRequest;
 import com.ensa.agile.application.story.response.UserStoryResponse;
@@ -31,7 +31,6 @@ public class CreateUserStoryUseCase
     public UserStoryResponse execute(UserStoryCreateRequest request) {
         ProductBackLog pb =
             this.productBackLogRepository.findById(request.getProductId());
-
 
         UserStory us = UserStory.builder()
                            .title(request.getTitle())

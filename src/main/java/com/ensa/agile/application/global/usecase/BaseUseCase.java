@@ -1,4 +1,4 @@
-package com.ensa.agile.application.global.useCase;
+package com.ensa.agile.application.global.usecase;
 
 import com.ensa.agile.application.global.transaction.ITransactionCallBack;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;

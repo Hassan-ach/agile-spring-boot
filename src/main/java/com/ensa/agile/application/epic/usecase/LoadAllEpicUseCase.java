@@ -1,7 +1,7 @@
 package com.ensa.agile.application.epic.usecase;
 
 import com.ensa.agile.application.epic.response.EpicResponse;
-import com.ensa.agile.application.global.useCase.BaseUseCase;
+import com.ensa.agile.application.global.usecase.BaseUseCase;
 
 public class LoadAllEpicUseCase extends BaseUseCase<String, EpicResponse> {
     public LoadAllEpicUseCase() { super(null); }
