@@ -7,5 +7,5 @@ import java.util.List;
 public interface EpicRepository extends BaseDomainRepository<Epic, String> {
     List<Epic> findAllByProductBackLogId(String productBackLogId);
 
-    Epic loadEpicRowsById(String id);
+    Epic loadEpicById(String id);
 }
