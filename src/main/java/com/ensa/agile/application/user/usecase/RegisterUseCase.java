@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.usecase.BaseUseCase;
-import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
+import com.ensa.agile.application.user.exception.EmailAlreadyUsedException;
 import com.ensa.agile.application.user.mapper.AuthenticationResponseMapper;
 import com.ensa.agile.application.user.mapper.RegisterRequestMapper;
 import com.ensa.agile.application.user.request.RegisterRequest;
@@ -35,7 +35,7 @@ public class RegisterUseCase
     public AuthenticationResponse execute(RegisterRequest registerRequest) {
         if (userRepository.existsByEmailIgnoreCase(
                 registerRequest.getEmail())) {
-            throw new EmailAlreadyUsedExeption();
+            throw new EmailAlreadyUsedException();
         }
 
         String hashedPassword =

@@ -19,7 +19,6 @@ public interface JpaEpicRepository
         u.id,
         u.title,
         u.description,
-        u.status,
         u.priority,
         u.storyPoints,
         u.acceptanceCriteria

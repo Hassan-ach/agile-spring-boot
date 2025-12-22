@@ -1,5 +1,6 @@
 package com.ensa.agile.application.story.request;
 
+import com.ensa.agile.domain.story.enums.MoscowType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,7 +19,7 @@ public class UserStoryCreateRequest {
 
     @NotBlank private String description;
 
-    @NotNull @Min(1) private Integer priority;
+    @NotNull private MoscowType priority;
 
     @NotNull @Min(1) private Integer storyPoints;
 

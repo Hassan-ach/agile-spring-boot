@@ -2,7 +2,7 @@ package com.ensa.agile.application.product.usecase;
 
 import com.ensa.agile.application.common.request.InviteRequest;
 import com.ensa.agile.application.common.response.InviteResponse;
-import com.ensa.agile.application.common.useCase.InviteUseCase;
+import com.ensa.agile.application.common.usecase.InviteUseCase;
 import com.ensa.agile.application.global.service.ICurrentUser;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.domain.product.enums.RoleType;

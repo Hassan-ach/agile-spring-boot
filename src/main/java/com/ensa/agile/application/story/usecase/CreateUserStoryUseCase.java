@@ -8,7 +8,6 @@ import com.ensa.agile.application.story.response.UserStoryResponse;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
 import com.ensa.agile.domain.story.entity.UserStory;
-import com.ensa.agile.domain.story.enums.StoryStatus;
 import com.ensa.agile.domain.story.repository.UserStoryRepository;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +34,6 @@ public class CreateUserStoryUseCase
         UserStory us = UserStory.builder()
                            .title(request.getTitle())
                            .description(request.getDescription())
-                           .status(StoryStatus.TODO)
                            .priority(request.getPriority())
                            .storyPoints(request.getStoryPoints())
                            .acceptanceCriteria(request.getAcceptanceCriteria())

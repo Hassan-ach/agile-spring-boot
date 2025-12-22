@@ -1,5 +1,7 @@
 package com.ensa.agile.application.story.response;
 
+import com.ensa.agile.domain.story.enums.MoscowType;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +14,7 @@ public class UserStoryResponse {
     private final String title;
     private final String description;
     private final String status;
-    private final Integer priority;
+    private final MoscowType priority;
     private final Integer storyPoints;
     private final String acceptanceCriteria;
 }

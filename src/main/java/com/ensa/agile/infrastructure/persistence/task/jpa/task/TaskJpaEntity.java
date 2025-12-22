@@ -1,0 +1,46 @@
+package com.ensa.agile.infrastructure.persistence.task.jpa.task;
+
+import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
+import com.ensa.agile.infrastructure.persistence.sprint.jpa.backlog.SprintBackLogJpaEntity;
+import com.ensa.agile.infrastructure.persistence.story.jpa.userstory.UserStoryJpaEntity;
+import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Table(name = "task")
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@SuperBuilder
+public class TaskJpaEntity extends BaseJpaEntity {
+
+    @Column(nullable = false) private String title;
+    @Column(nullable = false) private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_story_id", nullable = false)
+    private UserStoryJpaEntity userStory;
+
+    @ManyToOne
+    @JoinColumn(name = "sprint_backlog_id", nullable = false)
+    private SprintBackLogJpaEntity sprintBackLog;
+
+    @ManyToOne
+    @JoinColumn(name = "assignee_id", nullable = false)
+    private UserJpaEntity assignee;
+
+    @Column(name = "estimated_hours", nullable = false)
+    private Double estimatedHours;
+
+    @Column(name = "actual_hours", nullable = true) private Double actualHours;
+}

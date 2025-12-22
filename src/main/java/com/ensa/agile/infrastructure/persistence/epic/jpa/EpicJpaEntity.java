@@ -3,7 +3,7 @@ package com.ensa.agile.infrastructure.persistence.epic.jpa;
 import java.time.LocalDateTime;
 
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
-import com.ensa.agile.infrastructure.persistence.product.jpa.productBackLog.ProductBackLogJpaEntity;
+import com.ensa.agile.infrastructure.persistence.product.jpa.backlog.ProductBackLogJpaEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

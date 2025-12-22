@@ -4,7 +4,7 @@ import com.ensa.agile.application.product.exception.EpicNotFoundException;
 import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
 import com.ensa.agile.application.product.exception.UserAlreadyInvitedException;
 import com.ensa.agile.application.user.exception.AuthenticationFailureException;
-import com.ensa.agile.application.user.exception.EmailAlreadyUsedExeption;
+import com.ensa.agile.application.user.exception.EmailAlreadyUsedException;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 import com.ensa.agile.application.user.exception.UserNotFoundException;
 import com.ensa.agile.domain.global.exception.AlreadyExistException;
@@ -53,7 +53,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({AlreadyExistException.class,
-                       EmailAlreadyUsedExeption.class,
+                       EmailAlreadyUsedException.class,
                        UserAlreadyInvitedException.class})
     public ResponseEntity<Map<String, String>>
         handleConflictExceptions(Exception ex) {

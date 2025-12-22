@@ -6,6 +6,7 @@ import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.application.story.mapper.UserStoryResponseMapper;
 import com.ensa.agile.application.story.response.UserStoryResponse;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductBackLogResponseMapper {
@@ -46,14 +47,18 @@ public class ProductBackLogResponseMapper {
             .id(productBackLog.getId())
             .name(productBackLog.getName())
             .description(productBackLog.getDescription())
-            .epics(productBackLog.getEpics()
-                       .stream()
-                       .map(EpicResponseMapper::toResponseWithUserStories)
-                       .toList())
-            .userStories(productBackLog.getUserStories()
+            .epics(productBackLog.getEpics() == null
+                       ? new ArrayList<>()
+                       : productBackLog.getEpics()
                              .stream()
-                             .map(UserStoryResponseMapper::toResponse)
+                             .map(EpicResponseMapper::toResponseWithUserStories)
                              .toList())
+            .userStories(productBackLog.getUserStories() == null
+                             ? new ArrayList<>()
+                             : productBackLog.getUserStories()
+                                   .stream()
+                                   .map(UserStoryResponseMapper::toResponse)
+                                   .toList())
             .build();
     }
 

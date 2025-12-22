@@ -21,6 +21,6 @@ public class LoadProductBackLogUseCase
     @Override
     public ProductBackLogResponse execute(String id) {
         return ProductBackLogResponseMapper.toResponseWithEpicsAndUserStories(
-            this.productBackLogRepository.findProductBackLogRowsById(id));
+            this.productBackLogRepository.findProductBackLogById(id));
     }
 }

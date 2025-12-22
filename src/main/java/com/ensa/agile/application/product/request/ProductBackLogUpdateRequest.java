@@ -3,17 +3,19 @@ package com.ensa.agile.application.product.request;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class ProductBackLogUpdateRequest {
 
     private String id;
 
-    private final String name;
+    private String name;
 
-    private final String description;
+    private String description;
 
     public ProductBackLogUpdateRequest(String id,
                                        ProductBackLogUpdateRequest req) {

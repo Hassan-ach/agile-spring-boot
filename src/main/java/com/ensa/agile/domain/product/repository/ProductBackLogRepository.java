@@ -6,5 +6,5 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 public interface ProductBackLogRepository
     extends BaseDomainRepository<ProductBackLog, String> {
 
-    ProductBackLog findProductBackLogRowsById(String id);
+    ProductBackLog findProductBackLogById(String id);
 }

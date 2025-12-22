@@ -16,6 +16,6 @@ public class LoadEpicUseCase extends BaseUseCase<EpicRequest, EpicResponse> {
     public EpicResponse execute(EpicRequest req) {
 
         return EpicResponseMapper.toResponse(
-            this.epicRepository.loadEpicRowsById(req.getEpicId()));
+            this.epicRepository.loadEpicById(req.getEpicId()));
     }
 }
