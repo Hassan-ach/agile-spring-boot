@@ -1,37 +1,53 @@
 package com.ensa.agile.application.user.request;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import com.ensa.agile.application.common.utils.ValidationUtil;
+import com.ensa.agile.domain.global.exception.ValidationException;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
 @Builder
 @Getter
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class RegisterRequest {
 
-	@NotBlank
-	@Size(min = 3)
-	private String firstName;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
 
-	@NotBlank
-	@Size(min = 3)
-	private String lastName;
+    // This constructor is for validation purposes
+    public RegisterRequest(RegisterRequest req) {
+        if (req == null) {
+            throw new IllegalArgumentException("Request cannot be null");
+        }
 
-	@NotBlank
-	@Email
-	private String email;
-
-	@Size(min = 8)
-	private String password;
-
-	public RegisterRequest(String firstName, String lastName, String email, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.password = password;
-	}
-
+        if (req.firstName == null || req.firstName.trim().isEmpty() ||
+            req.firstName.length() < 3) {
+            throw new ValidationException(
+                "First name must be at least 3 characters long and cannot be "
+                + "blank");
+        }
+        if (req.lastName == null || req.lastName.trim().isEmpty() ||
+            req.lastName.length() < 3) {
+            throw new ValidationException(
+                "Last name must be at least 3 characters long and cannot be "
+                + "blank");
+        }
+        if (req.email == null || req.email.trim().isEmpty() ||
+            !ValidationUtil.isValidEmail(req.email)) {
+            throw new ValidationException("Email must be valid and cannot be "
+                                          + "blank");
+        }
+        if (req.password != null && req.password.length() < 8) {
+            throw new ValidationException(
+                "Password must be at least 8 characters long if provided");
+        }
+        this.firstName = req.firstName;
+        this.lastName = req.lastName;
+        this.email = req.email;
+        this.password = req.password;
+    }
 }

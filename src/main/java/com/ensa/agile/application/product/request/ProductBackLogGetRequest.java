@@ -1,13 +1,14 @@
 package com.ensa.agile.application.product.request;
 
-import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class ProductBackLogGetRequest {
-    @NotBlank private final String id;
+    private String id;
 }

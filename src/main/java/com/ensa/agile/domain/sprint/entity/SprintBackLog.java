@@ -25,36 +25,6 @@ public class SprintBackLog extends BaseDomainEntity {
     private SprintHistory status;
     private List<SprintHistory> sprintHistories;
 
-    // public SprintBackLog(String name, ProductBackLog productBackLog,
-    //                      User scrumMaster, LocalDate startDate,
-    //                      LocalDate endDate, String goal) {
-    //     super(null);
-    //     this.name = name;
-    //     this.productBackLog = productBackLog;
-    //     this.scrumMaster = scrumMaster;
-    //     this.startDate = startDate;
-    //     this.endDate = endDate;
-    //     this.goal = goal;
-    // }
-
-    // public SprintBackLog(String name, ProductBackLog productBackLog,
-    //                      User scrumMaster, List<SprintMember> sprintMembers,
-    //                      List<UserStory> userStories, LocalDate startDate,
-    //                      LocalDate endDate, String goal, SprintHistory
-    //                      status, List<SprintHistory> sprintHistories) {
-    //     super(null);
-    //     this.name = name;
-    //     this.productBackLog = productBackLog;
-    //     this.scrumMaster = scrumMaster;
-    //     this.members = sprintMembers;
-    //     this.userStories = userStories;
-    //     this.startDate = startDate;
-    //     this.endDate = endDate;
-    //     this.goal = goal;
-    //     this.status = status;
-    //     this.sprintHistories = sprintHistories;
-    // }
-
     public SprintBackLog(String id, String name, ProductBackLog productBackLog,
                          User scrumMaster, List<SprintMember> sprintMembers,
                          List<UserStory> userStories, LocalDate startDate,

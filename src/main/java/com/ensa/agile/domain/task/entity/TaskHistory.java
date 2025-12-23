@@ -14,27 +14,6 @@ public class TaskHistory extends BaseDomainEntity {
     private TaskStatus status;
     private String note;
 
-    // public TaskHistory(Task task, String note) {
-    //     super(null);
-    //     this.task = task;
-    //     this.status = TaskStatus.TODO;
-    //     this.note = note;
-    // }
-    //
-    // public TaskHistory(Task task, TaskStatus status, String note) {
-    //     super(null);
-    //     this.task = task;
-    //     this.status = status;
-    //     this.note = note;
-    // }
-    //
-    // public TaskHistory(String id, Task task, TaskStatus status, String note)
-    // {
-    //     super(id);
-    //     this.task = task;
-    //     this.status = status;
-    //     this.note = note;
-    // }
     public TaskHistory(String id, Task task, TaskStatus status, String note,
                        LocalDateTime createdDate, String createdBy,
                        LocalDateTime lastModifiedDate, String lastModifiedBy) {

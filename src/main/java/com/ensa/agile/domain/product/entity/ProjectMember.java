@@ -17,15 +17,6 @@ public class ProjectMember extends BaseDomainEntity {
     private RoleType role;
     private MemberStatus status;
 
-    // public ProjectMember(User user, ProductBackLog productBackLog,
-    //                      RoleType role, MemberStatus status) {
-    //     super(null);
-    //     this.user = user;
-    //     this.productBackLog = productBackLog;
-    //     this.role = role;
-    //     this.status = status;
-    // }
-
     public ProjectMember(String id, User user, ProductBackLog productBackLog,
                          RoleType role, MemberStatus status,
                          LocalDateTime createdDate, String createdBy,

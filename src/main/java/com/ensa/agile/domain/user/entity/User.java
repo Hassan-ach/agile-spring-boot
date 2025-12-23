@@ -61,19 +61,19 @@ public class User {
         this.createdDate = createdDate;
     }
 
-    public void disable() { this.enabled = false; }
-
-    public void enable() { this.enabled = true; }
-
-    public void lock() { this.locked = true; }
-
-    public void unlock() { this.locked = false; }
-
-    public void expireCredentials() { this.credentialsExpired = true; }
-
-    public void renewCredentials() { this.credentialsExpired = false; }
-
-    public void verifyEmail() { this.emailVerified = true; }
-
+    // public void disable() { this.enabled = false; }
+    //
+    // public void enable() { this.enabled = true; }
+    //
+    // public void lock() { this.locked = true; }
+    //
+    // public void unlock() { this.locked = false; }
+    //
+    // public void expireCredentials() { this.credentialsExpired = true; }
+    //
+    // public void renewCredentials() { this.credentialsExpired = false; }
+    //
+    // public void verifyEmail() { this.emailVerified = true; }
+    //
     public List<String> getAuthorities() { return new ArrayList<String>(); }
 }

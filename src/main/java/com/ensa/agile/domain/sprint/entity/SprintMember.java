@@ -12,12 +12,6 @@ public class SprintMember extends BaseDomainEntity {
     private final User user;
     private final SprintBackLog sprintBackLog;
 
-    // public SprintMember(User user, SprintBackLog sprintBacklog) {
-    //     super(null);
-    //     this.user = user;
-    //     this.sprintBackLog = sprintBacklog;
-    // }
-
     public SprintMember(String id, User user, SprintBackLog sprint,
                         LocalDateTime createdDate, String createdBy,
                         LocalDateTime lastModifiedDate, String lastModifiedBy) {

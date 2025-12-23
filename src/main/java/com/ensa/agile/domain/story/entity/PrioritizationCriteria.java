@@ -18,20 +18,6 @@ public class PrioritizationCriteria extends BaseDomainEntity {
     private final String dependencies;
     private final MoscowType moscowCategory;
 
-    // public PrioritizationCriteria(UserStory userStory, Integer buisnessVakue,
-    //                               Integer uregency, Integer complexity,
-    //                               Integer risk, String dependencies,
-    //                               MoscowType moscowCategory) {
-    //     super(null);
-    //     this.userStory = userStory;
-    //     this.buisnessVakue = buisnessVakue;
-    //     this.uregency = uregency;
-    //     this.complexity = complexity;
-    //     this.risk = risk;
-    //     this.dependencies = dependencies;
-    //     this.moscowCategory = moscowCategory;
-    // }
-
     public PrioritizationCriteria(
         String id, UserStory userStory, Integer buisnessVakue, Integer uregency,
         Integer complexity, Integer risk, String dependencies,

@@ -14,14 +14,6 @@ public class UserStoryHistory extends BaseDomainEntity {
     private final StoryStatus status;
     private final String note;
 
-    // public UserStoryHistory(UserStory userStory, StoryStatus status,
-    //                         String note) {
-    //     super(null);
-    //     this.userStory = userStory;
-    //     this.status = status;
-    //     this.note = note;
-    // }
-
     public UserStoryHistory(String id, UserStory userStory, StoryStatus status,
                             String note, LocalDateTime createdDate,
                             String createdBy, LocalDateTime lastModifiedDate,

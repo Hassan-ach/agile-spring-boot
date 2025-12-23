@@ -23,34 +23,6 @@ public class Task extends BaseDomainEntity {
     private List<TaskHistory> taskHistories;
     private TaskHistory status;
 
-    // public Task(String title, String description, UserStory userStory,
-    //             SprintBackLog sprintBackLog, User assignee,
-    //             Double estimatedHours, Double actualHours) {
-    //     super(null);
-    //     this.title = title;
-    //     this.description = description;
-    //     this.userStory = userStory;
-    //     this.sprintBackLog = sprintBackLog;
-    //     this.assignee = assignee;
-    //     this.estimatedHours = estimatedHours;
-    //     this.actualHours = actualHours;
-    // }
-    //
-    // public Task(String title, String description, UserStory userStory,
-    //             SprintBackLog sprintBackLog, User assignee,
-    //             Double estimatedHours, Double actualHours,
-    //             List<TaskHistory> taskHistories) {
-    //     super(null);
-    //     this.title = title;
-    //     this.description = description;
-    //     this.userStory = userStory;
-    //     this.sprintBackLog = sprintBackLog;
-    //     this.assignee = assignee;
-    //     this.estimatedHours = estimatedHours;
-    //     this.actualHours = actualHours;
-    //     this.taskHistories = taskHistories;
-    // }
-    //
     public Task(String id, String title, String description,
                 UserStory userStory, SprintBackLog sprintBackLog, User assignee,
                 Double estimatedHours, Double actualHours,

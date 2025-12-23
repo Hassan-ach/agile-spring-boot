@@ -1,7 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.epic.jpa;
 
 import com.ensa.agile.domain.story.enums.MoscowType;
-import com.ensa.agile.domain.story.enums.StoryStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

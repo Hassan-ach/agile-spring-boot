@@ -1,7 +1,7 @@
 package com.ensa.agile.application.sprint.request;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import com.ensa.agile.application.common.utils.ValidationUtil;
+import com.ensa.agile.domain.global.exception.ValidationException;
 import java.time.LocalDate;
 import java.util.List;
 import lombok.AllArgsConstructor;
@@ -12,12 +12,39 @@ import lombok.Data;
 @Data
 @Builder
 public class SprintBackLogCreateRequest {
-    @NotBlank private final String name;
-    // @NotBlank private final String scrumMasterEmail;
-    @NotNull private final LocalDate startDate;
-    @NotNull private final LocalDate endDate;
+    private final String name;
+    private final String scrumMasterEmail;
+    private final LocalDate startDate;
+    private final LocalDate endDate;
+    private final List<String> userStoriesIds;
+    private String productId;
 
-    @NotNull private final List<String> userStoriesIds;
-
-    @NotBlank private String productId;
+    // This constructor is for validation purposes
+    public SprintBackLogCreateRequest(String productId,
+                                      SprintBackLogCreateRequest req) {
+        if (req == null) {
+            throw new IllegalArgumentException("request cannot be null");
+        }
+        if (req.getName() == null || req.getName().isBlank()) {
+            throw new ValidationException("name cannot be null or blank");
+        }
+        if (req.getScrumMasterEmail() == null ||
+            req.getScrumMasterEmail().isBlank() ||
+            !ValidationUtil.isValidEmail(req.getScrumMasterEmail())) {
+            throw new ValidationException(
+                "scrumMasterEmail cannot be null or blank");
+        }
+        if (req.getStartDate() == null) {
+            throw new ValidationException("startDate cannot be null");
+        }
+        if (req.getEndDate() == null) {
+            throw new ValidationException("endDate cannot be null");
+        }
+        this.name = req.getName();
+        this.scrumMasterEmail = req.getScrumMasterEmail();
+        this.startDate = req.getStartDate();
+        this.endDate = req.getEndDate();
+        this.userStoriesIds = req.getUserStoriesIds();
+        this.productId = productId;
+    }
 }

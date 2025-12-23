@@ -16,11 +16,6 @@ public class SprintHistory extends BaseDomainEntity {
 
     private final String note;
 
-    // public SprintHistory(SprintBackLog sprint, SprintStatus status, String
-    // note) { 	super(null); 	this.sprint = sprint; 	this.status = status;
-    // 	this.note = note;
-    // }
-
     public SprintHistory(String id, SprintBackLog sprint, SprintStatus status,
                          String note, LocalDateTime createdDate,
                          String createdBy, LocalDateTime lastModifiedDate,

@@ -22,49 +22,6 @@ public class ProductBackLog extends BaseDomainEntity {
     private List<ProjectMember> projectMembers;
     private List<SprintBackLog> sprintBackLogs;
 
-    // public ProductBackLog(String name, String description) {
-    //     super(null);
-    //     this.name = name;
-    //     this.description = description;
-    //     this.epics = new ArrayList<>();
-    //     this.userStories = new ArrayList<>();
-    //     this.projectMembers = new ArrayList<>();
-    //     this.sprintBackLogs = new ArrayList<>();
-    // }
-
-    // public ProductBackLog(String name, String description, List<Epic> epics,
-    //                       List<UserStory> userStories,
-    //                       List<ProjectMember> projectMembers,
-    //                       List<SprintBackLog> sprintBackLogs) {
-    //     super(null);
-    //     this.name = name;
-    //     this.description = description;
-    //     this.epics = epics;
-    //     this.userStories = userStories;
-    //     this.projectMembers = projectMembers;
-    //     this.sprintBackLogs = sprintBackLogs;
-    // }
-    // public ProductBackLog(String id, String name, String description) {
-    //     super(id);
-    //     this.name = name;
-    //     this.description = description;
-    //     this.epics = new ArrayList<>();
-    //     this.userStories = new ArrayList<>();
-    //     this.projectMembers = new ArrayList<>();
-    //     this.sprintBackLogs = new ArrayList<>();
-    // }
-    //
-    // public ProductBackLog(String id, String name, String description,
-    //                       LocalDateTime createdDate, String createdBy) {
-    //     super(id, createdDate, createdBy, null, null);
-    //     this.name = name;
-    //     this.description = description;
-    //     this.epics = new ArrayList<>();
-    //     this.userStories = new ArrayList<>();
-    //     this.projectMembers = new ArrayList<>();
-    //     this.sprintBackLogs = new ArrayList<>();
-    // }
-
     public ProductBackLog(String id, String name, String description,
                           List<Epic> epics, List<UserStory> userStories,
                           List<ProjectMember> projectMembers,
