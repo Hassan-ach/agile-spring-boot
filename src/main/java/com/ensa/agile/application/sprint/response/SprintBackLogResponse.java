@@ -1,23 +1,34 @@
 package com.ensa.agile.application.sprint.response;
 
+import com.ensa.agile.application.story.response.UserStoryResponse;
 import com.ensa.agile.domain.sprint.entity.SprintHistory;
-import com.ensa.agile.domain.story.entity.UserStory;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 @Builder
 public class SprintBackLogResponse {
-    private final String id;
-    private final String name;
-    private final String scrumMasterEmail;
-    private final SprintHistory status;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private String id;
+    private String name;
+    private String scrumMasterEmail;
+    private SprintHistory status;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private String goal;
+    private SprintHistoryResponse sprintHistory;
 
-    private final List<UserStory> userStories;
+    private String createdBy;
+    private LocalDateTime createdDate;
+    private String lastModifiedBy;
+    private LocalDateTime lastModifiedDate;
+
+    private List<SprintMemberResponse> members;
+    private List<UserStoryResponse> userStories;
 }

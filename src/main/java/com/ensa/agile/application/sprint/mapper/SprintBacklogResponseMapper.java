@@ -1,6 +1,7 @@
 package com.ensa.agile.application.sprint.mapper;
 
 import com.ensa.agile.application.sprint.response.SprintBackLogResponse;
+import com.ensa.agile.application.story.mapper.UserStoryResponseMapper;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import java.util.List;
@@ -15,7 +16,9 @@ public class SprintBacklogResponseMapper {
             .status(sprint.getStatus())
             .startDate(sprint.getStartDate())
             .endDate(sprint.getEndDate())
-            .userStories(userStories)
+            .userStories(userStories.stream()
+                             .map(UserStoryResponseMapper::toResponse)
+                             .toList())
             .build();
     }
 }

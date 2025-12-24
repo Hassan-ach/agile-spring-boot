@@ -1,0 +1,11 @@
+NULL, NULL, NULL, NULL, NULL, NULL, -- project member
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -- sprint backlog
+NULL, NULL, NULL, NULL, -- sprint member
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, -- epic
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -- user story
+NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, -- task
+
+    @JoinFormula("SELECT ush.id FROM user_stories_history ush WHERE "
+                 +
+                 "ush.user_story_id = id ORDER BY ush.created_at DESC LIMIT 1 ")
+

@@ -5,6 +5,7 @@ import com.ensa.agile.application.common.request.RemoveRequest;
 import com.ensa.agile.application.common.response.InviteResponse;
 import com.ensa.agile.application.common.response.RemoveResponse;
 import com.ensa.agile.application.product.request.ProductBackLogCreateRequest;
+import com.ensa.agile.application.product.request.ProductBackLogGetRequest;
 import com.ensa.agile.application.product.request.ProductBackLogUpdateRequest;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.application.product.usecase.CreateProductBackLogUseCase;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -48,10 +50,12 @@ public class ProductBackLogController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductBackLogResponse>
-    getProductBacklogById(@PathVariable String id) {
+    getProductBacklogById(@PathVariable String id,
+                          @RequestParam("with") String with) {
 
         return ResponseEntity.status(HttpStatus.OK)
-            .body(getProductBackLogUseCase.execute(id));
+            .body(getProductBackLogUseCase.execute(
+                new ProductBackLogGetRequest(id, with)));
     }
 
     @GetMapping("/load/{id}")

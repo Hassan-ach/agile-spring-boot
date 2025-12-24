@@ -29,15 +29,4 @@ public class Epic extends BaseDomainEntity {
         this.productBackLog = productBackLog;
         this.userStories = userStories;
     }
-
-    // public Epic(String id, String title, String description,
-    //             ProductBackLog productBackLog, LocalDateTime createdDate,
-    //             String createdBy, LocalDateTime lastModifiedDate,
-    //             String lastModifiedBy) {
-    //     super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-    //     this.title = title;
-    //     this.description = description;
-    //     this.productBackLog = productBackLog;
-    //     this.userStories = new ArrayList<>();
-    // }
 }
