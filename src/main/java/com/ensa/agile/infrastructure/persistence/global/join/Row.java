@@ -2,7 +2,6 @@ package com.ensa.agile.infrastructure.persistence.global.join;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -31,7 +30,7 @@ public class Row {
     private String sprintId;
     private String sprintName;
     private String sprintScrumMasterEmail;
-    private String sprintStatus;
+    // private String sprintStatus;
     private LocalDate sprintStartDate;
     private LocalDate sprintEndDate;
     private String sprintGoal;

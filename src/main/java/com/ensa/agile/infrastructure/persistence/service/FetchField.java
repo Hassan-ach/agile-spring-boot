@@ -14,6 +14,7 @@ public enum FetchField {
 
     EPICS,
     EPICS_USER_STORIES,
+    EPICS_USER_STORIES_TASKS,
 
     USER_STORIES,
     USER_STORIES_TASKS;

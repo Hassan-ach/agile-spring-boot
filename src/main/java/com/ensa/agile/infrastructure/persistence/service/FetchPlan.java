@@ -11,10 +11,11 @@ public final class FetchPlan {
     boolean sprintStoryTasks;
     boolean epics;
     boolean epicStories;
+    boolean epicStoryTasks;
     boolean orphanStories;
     boolean orphanStoryTasks;
 
-    static FetchPlan resolve(List<String> fetchFields) {
+    public static FetchPlan resolve(List<String> fetchFields) {
         FetchPlan p = new FetchPlan();
 
         if (FetchField.isAll(fetchFields)) {
@@ -38,6 +39,8 @@ public final class FetchPlan {
         p.epics = FetchField.has(fetchFields, FetchField.EPICS);
         p.epicStories =
             FetchField.has(fetchFields, FetchField.EPICS_USER_STORIES);
+        p.epicStoryTasks =
+            FetchField.has(fetchFields, FetchField.EPICS_USER_STORIES_TASKS);
 
         p.orphanStories = FetchField.has(fetchFields, FetchField.USER_STORIES);
         p.orphanStoryTasks =

@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Table(name = "sprint_backlogs_history")
+@Table(name = "sprint_histories")
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor

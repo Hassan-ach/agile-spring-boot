@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Table(name = "task_history")
+@Table(name = "task_histories")
 @Entity
 @Getter
 @Setter

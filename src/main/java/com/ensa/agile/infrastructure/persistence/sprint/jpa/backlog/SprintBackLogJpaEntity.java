@@ -30,7 +30,7 @@ public class SprintBackLogJpaEntity extends BaseJpaEntity {
     @Column(nullable = false) private String name;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", nullable = false)
+    @JoinColumn(name = "product_backlog_id", nullable = false)
     private ProductBackLogJpaEntity productBackLog;
 
     @ManyToOne

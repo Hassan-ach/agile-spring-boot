@@ -5,7 +5,6 @@ import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.application.product.mapper.ProductBackLogResponseMapper;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
-import java.util.List;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +21,6 @@ public class LoadProductBackLogUseCase
     @Override
     public ProductBackLogResponse execute(String id) {
         return ProductBackLogResponseMapper.toResponseWithEpicsAndUserStories(
-            this.productBackLogRepository.findProductBackLogById(id,
-                                                                 List.of()));
+            this.productBackLogRepository.findProductBackLogById(id));
     }
 }

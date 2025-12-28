@@ -49,9 +49,9 @@ public class ProductBackLogController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductBackLogResponse>
-    getProductBacklogById(@PathVariable String id,
-                          @RequestParam("with") String with) {
+    public ResponseEntity<ProductBackLogResponse> getProductBacklogById(
+        @PathVariable String id,
+        @RequestParam(name = "with", required = false) String with) {
 
         return ResponseEntity.status(HttpStatus.OK)
             .body(getProductBackLogUseCase.execute(

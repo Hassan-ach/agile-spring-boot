@@ -34,12 +34,6 @@ public class ProductBackLogJpaMapper {
             return null;
         }
 
-        // return new ProductBackLog(
-        //     jpaEntity.getId(), jpaEntity.getName(),
-        //     jpaEntity.getDescription(), jpaEntity.getCreatedDate(),
-        //     jpaEntity.getCreatedBy(), jpaEntity.getLastModifiedDate(),
-        //     jpaEntity.getLastModifiedBy());
-
         return ProductBackLog.builder()
             .id(jpaEntity.getId())
             .name(jpaEntity.getName())
@@ -86,11 +80,6 @@ public class ProductBackLogJpaMapper {
             if (row.getStoryId() == null)
                 continue;
 
-            // UserStory us = new UserStory(
-            //     row.getStoryId(), row.getStoryTitle(),
-            //     row.getStoryDescription(), row.getPriority(),
-            //     StoryStatus.valueOf(row.getStatus()), row.getStoryPoints(),
-            //     row.getAcceptanceCriteria());
             UserStory us = UserStory.builder()
                                .id(row.getStoryId())
                                .title(row.getStoryTitle())
