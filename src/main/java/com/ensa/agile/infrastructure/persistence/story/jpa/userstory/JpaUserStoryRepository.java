@@ -1,7 +1,6 @@
 package com.ensa.agile.infrastructure.persistence.story.jpa.userstory;
 
 import com.ensa.agile.infrastructure.persistence.sprint.jpa.backlog.SprintBackLogJpaEntity;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -22,7 +21,6 @@ public interface JpaUserStoryRepository
     List<UserStoryJpaEntity> findByBatch(@Param("ids") List<String> ids);
 
     @Modifying
-    @Transactional
     @Query(""" 
         UPDATE UserStoryJpaEntity u SET u.sprintBackLog = :sprintBackLog
         WHERE u.id IN :userStoryIds
