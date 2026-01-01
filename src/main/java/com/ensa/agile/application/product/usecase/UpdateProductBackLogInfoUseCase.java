@@ -27,21 +27,9 @@ public class UpdateProductBackLogInfoUseCase
         ProductBackLog productBackLog =
             productBackLogRepository.findById(data.getId());
 
+        productBackLog.updateMetadata(data.getName(), data.getDescription());
+
         return ProductBackLogResponseMapper.tResponse(
-            productBackLogRepository.save(merge(productBackLog, data)));
-    }
-
-    private ProductBackLog
-    merge(ProductBackLog oldProductBackLog,
-          ProductBackLogUpdateRequest newProductBackLog) {
-        if (newProductBackLog.getName() != null) {
-            oldProductBackLog.setName(newProductBackLog.getName());
-        }
-        if (newProductBackLog.getDescription() != null) {
-            oldProductBackLog.setDescription(
-                newProductBackLog.getDescription());
-        }
-
-        return oldProductBackLog;
+            productBackLogRepository.save(productBackLog));
     }
 }

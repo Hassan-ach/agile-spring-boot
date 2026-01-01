@@ -1,7 +1,5 @@
 package com.ensa.agile.application.epic.usecase;
 
-import org.springframework.stereotype.Component;
-
 import com.ensa.agile.application.epic.mapper.EpicResponseMapper;
 import com.ensa.agile.application.epic.request.EpicUpdateRequest;
 import com.ensa.agile.application.epic.response.EpicResponse;
@@ -9,6 +7,7 @@ import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.epic.repository.EpicRepository;
+import org.springframework.stereotype.Component;
 
 @Component
 public class UpdateEpicUseCase
@@ -25,18 +24,8 @@ public class UpdateEpicUseCase
 
         Epic epic = epicRepository.findById(request.getId());
 
-        return EpicResponseMapper.toResponse(
-            epicRepository.save(merge(epic, request)));
-    }
+        epic.updateMetadata(request.getTitle(), request.getDescription());
 
-    private Epic merge(Epic epic, EpicUpdateRequest request) {
-        if (request.getTitle() != null) {
-            epic.setTitle(request.getTitle());
-        }
-        if (request.getDescription() != null) {
-            epic.setDescription(request.getDescription());
-        }
-
-        return epic;
+        return EpicResponseMapper.toResponse(epicRepository.save(epic));
     }
 }

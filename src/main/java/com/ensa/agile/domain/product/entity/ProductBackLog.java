@@ -2,6 +2,7 @@ package com.ensa.agile.domain.product.entity;
 
 import com.ensa.agile.domain.epic.entity.Epic;
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import java.time.LocalDateTime;
@@ -37,16 +38,27 @@ public class ProductBackLog extends BaseDomainEntity {
         this.projectMembers = projectMembers;
         this.sprintBackLogs = sprintBackLogs;
     }
-    // public ProductBackLog(String id, String name, String description,
-    //                       LocalDateTime createdDate, String createdBy,
-    //                       LocalDateTime lastModifiedDate,
-    //                       String lastModifiedBy) {
-    //     super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-    //     this.name = name;
-    //     this.description = description;
-    //     this.epics = new ArrayList<>();
-    //     this.userStories = new ArrayList<>();
-    //     this.projectMembers = new ArrayList<>();
-    //     this.sprintBackLogs = new ArrayList<>();
-    // }
+
+    public void updateMetadata(String name, String description) {
+        if (name != null) {
+            this.name = name;
+        }
+        if (description != null) {
+            this.description = description;
+        }
+
+        this.validate();
+    }
+
+    public void validate() {
+        if (this.name == null || this.name.isEmpty()) {
+            throw new ValidationException(
+                "Product Backlog name cannot be null or empty");
+        }
+
+        if (this.description == null || this.description.isEmpty()) {
+            throw new ValidationException(
+                "Product Backlog description cannot be null or empty");
+        }
+    }
 }
