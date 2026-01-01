@@ -40,6 +40,7 @@ public class CreateSprintBackLogUseCase
                     request.getProductId()))
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
+                .goal(request.getGoal())
                 .build());
 
         this.userStoryRepository.assignToSprint(request.getUserStoriesIds(),

@@ -16,6 +16,7 @@ public class SprintBackLogCreateRequest {
     private final String scrumMasterEmail;
     private final LocalDate startDate;
     private final LocalDate endDate;
+    private final String goal;
     private final List<String> userStoriesIds;
     private String productId;
 
@@ -40,10 +41,17 @@ public class SprintBackLogCreateRequest {
         if (req.getEndDate() == null) {
             throw new ValidationException("endDate cannot be null");
         }
+        if (req.getEndDate().isBefore(req.getStartDate())) {
+            throw new ValidationException("endDate cannot be before startDate");
+        }
+        if (req.getGoal() == null || req.getGoal().isBlank()) {
+            throw new ValidationException("goal cannot be null or blank");
+        }
         this.name = req.getName();
         this.scrumMasterEmail = req.getScrumMasterEmail();
         this.startDate = req.getStartDate();
         this.endDate = req.getEndDate();
+        this.goal = req.getGoal();
         this.userStoriesIds = req.getUserStoriesIds();
         this.productId = productId;
     }
