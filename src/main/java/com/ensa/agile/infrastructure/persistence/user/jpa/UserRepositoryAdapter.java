@@ -28,7 +28,7 @@ public class UserRepositoryAdapter implements UserRepository {
     }
 
     @Override
-    public boolean existsByEmailIgnoreCase(String email) {
+    public boolean existsByEmail(String email) {
         return jpaUserRepository.existsByEmailIgnoreCase(email);
     }
 

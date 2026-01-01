@@ -54,7 +54,7 @@ public abstract class RemoveUseCase
     }
 
     private boolean isUserExists(String userEmail) {
-        return userRepository.existsByEmailIgnoreCase(userEmail);
+        return userRepository.existsByEmail(userEmail);
     }
 
     private boolean hasRole(String userEmail, String projectId, RoleType role) {
