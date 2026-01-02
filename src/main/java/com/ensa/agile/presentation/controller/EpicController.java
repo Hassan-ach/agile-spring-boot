@@ -2,6 +2,7 @@ package com.ensa.agile.presentation.controller;
 
 import com.ensa.agile.application.common.response.DeleteResponse;
 import com.ensa.agile.application.epic.request.EpicCreateRequest;
+import com.ensa.agile.application.epic.request.EpicGetRequest;
 import com.ensa.agile.application.epic.request.EpicRequest;
 import com.ensa.agile.application.epic.request.EpicUpdateRequest;
 import com.ensa.agile.application.epic.response.EpicResponse;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -44,14 +46,12 @@ public class EpicController {
 
     @GetMapping("/{epicId}")
     public ResponseEntity<EpicResponse>
-    getEpicById(@PathVariable String productId, @PathVariable String epicId) {
+    getEpicById(@PathVariable String productId, @PathVariable String epicId,
+                @RequestParam String with) {
 
         return ResponseEntity.status(HttpStatus.OK)
-            .body(
-                getEpicUseCase.executeTransactionally(EpicRequest.builder()
-                                                          .epicId(epicId)
-                                                          .productId(productId)
-                                                          .build()));
+            .body(getEpicUseCase.executeTransactionally(
+                new EpicGetRequest(productId, epicId, with)));
     }
 
     @PatchMapping("/{epicId}")
