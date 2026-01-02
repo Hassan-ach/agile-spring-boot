@@ -1,5 +1,8 @@
 package com.ensa.agile.domain.task.repository;
 
-public interface TaskRepository {
+import com.ensa.agile.domain.global.repository.BaseDomainRepository;
+import com.ensa.agile.domain.task.entity.Task;
 
+public interface TaskRepository extends BaseDomainRepository<Task, String> {
+    //
 }

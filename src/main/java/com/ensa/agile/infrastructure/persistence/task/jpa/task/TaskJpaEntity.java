@@ -3,6 +3,7 @@ package com.ensa.agile.infrastructure.persistence.task.jpa.task;
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
 import com.ensa.agile.infrastructure.persistence.sprint.jpa.backlog.SprintBackLogJpaEntity;
 import com.ensa.agile.infrastructure.persistence.story.jpa.userstory.UserStoryJpaEntity;
+import com.ensa.agile.infrastructure.persistence.task.jpa.history.TaskHistoryJpaEntity;
 import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -14,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.JoinFormula;
 
 @Table(name = "tasks")
 @Entity
@@ -43,4 +45,9 @@ public class TaskJpaEntity extends BaseJpaEntity {
     private Double estimatedHours;
 
     @Column(name = "actual_hours", nullable = true) private Double actualHours;
+
+    @ManyToOne
+    @JoinFormula("SELECT th.id FROM task_histories th WHERE "
+                 + "th.task_id = id ORDER BY th.created_at DESC LIMIT 1 ")
+    private TaskHistoryJpaEntity status;
 }

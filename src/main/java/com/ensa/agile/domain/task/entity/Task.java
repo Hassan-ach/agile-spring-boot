@@ -7,10 +7,12 @@ import com.ensa.agile.domain.user.entity.User;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @SuperBuilder
 @Getter
+@Setter
 public class Task extends BaseDomainEntity {
 
     private String title;
