@@ -22,7 +22,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-public class SprintBackLogHistoryJpaEntity extends BaseJpaEntity {
+public class SprintHistoryJpaEntity extends BaseJpaEntity {
 
     @ManyToOne
     @JoinColumn(name = "sprint_backlog_id", nullable = false)

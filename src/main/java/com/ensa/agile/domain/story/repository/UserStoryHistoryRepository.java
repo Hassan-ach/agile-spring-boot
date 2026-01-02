@@ -1,5 +1,8 @@
 package com.ensa.agile.domain.story.repository;
 
-public interface UserStoryHistoryRepository {
+import com.ensa.agile.domain.global.repository.BaseDomainRepository;
+import com.ensa.agile.domain.story.entity.UserStoryHistory;
+
+public interface UserStoryHistoryRepository extends BaseDomainRepository<UserStoryHistory, String> {
 
 }

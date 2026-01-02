@@ -2,7 +2,7 @@ package com.ensa.agile.infrastructure.persistence.sprint.jpa.backlog;
 
 import com.ensa.agile.infrastructure.persistence.global.entity.BaseJpaEntity;
 import com.ensa.agile.infrastructure.persistence.product.jpa.backlog.ProductBackLogJpaEntity;
-import com.ensa.agile.infrastructure.persistence.sprint.jpa.history.SprintBackLogHistoryJpaEntity;
+import com.ensa.agile.infrastructure.persistence.sprint.jpa.history.SprintHistoryJpaEntity;
 import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,5 +46,5 @@ public class SprintBackLogJpaEntity extends BaseJpaEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinFormula("SELECT sh.id FROM sprint_backlogs_history sh WHERE "
                  + "sh.sprint_id = id ORDER BY sh.created_at DESC LIMIT 1 ")
-    private SprintBackLogHistoryJpaEntity status;
+    private SprintHistoryJpaEntity status;
 }

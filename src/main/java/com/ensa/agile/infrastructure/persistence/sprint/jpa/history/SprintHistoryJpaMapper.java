@@ -1,14 +1,13 @@
-package com.ensa.agile.infrastructure.persistence.story.jpa.history;
+package com.ensa.agile.infrastructure.persistence.sprint.jpa.history;
 
-import com.ensa.agile.domain.story.entity.UserStoryHistory;
-import com.ensa.agile.infrastructure.persistence.story.jpa.userstory.UserStoryJpaMapper;
+import com.ensa.agile.domain.sprint.entity.SprintHistory;
+import com.ensa.agile.infrastructure.persistence.sprint.jpa.backlog.SprintBackLogJpaMapper;
 
-public class UserStoryHistoryJpaMapper {
-    public static UserStoryHistoryJpaEntity
-    toJpaEntity(UserStoryHistory domain) {
-        return UserStoryHistoryJpaEntity.builder()
+public class SprintHistoryJpaMapper {
+    public static SprintHistoryJpaEntity toJpaEntity(SprintHistory domain) {
+        return SprintHistoryJpaEntity.builder()
             .id(domain.getId())
-            .userStory(UserStoryJpaMapper.toJpaEntity(domain.getUserStory()))
+            .sprint(SprintBackLogJpaMapper.toJpaEntity(domain.getSprint()))
             .status(domain.getStatus())
             .note(domain.getNote())
             .createdBy(domain.getCreatedBy())
@@ -18,12 +17,12 @@ public class UserStoryHistoryJpaMapper {
             .build();
     }
 
-    public static UserStoryHistory
-    toDomainEntity(UserStoryHistoryJpaEntity jpaEntity) {
-        return UserStoryHistory.builder()
+    public static SprintHistory
+    toDomainEntity(SprintHistoryJpaEntity jpaEntity) {
+        return SprintHistory.builder()
             .id(jpaEntity.getId())
-            .userStory(
-                UserStoryJpaMapper.toDomainEntity(jpaEntity.getUserStory()))
+            .sprint(
+                SprintBackLogJpaMapper.toDomainEntity(jpaEntity.getSprint()))
             .status(jpaEntity.getStatus())
             .note(jpaEntity.getNote())
             .createdBy(jpaEntity.getCreatedBy())

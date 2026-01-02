@@ -1,0 +1,45 @@
+package com.ensa.agile.infrastructure.persistence.sprint.jpa.history;
+
+import com.ensa.agile.application.sprint.exception.SprintHistoryNotFoundException;
+import com.ensa.agile.domain.sprint.entity.SprintHistory;
+import com.ensa.agile.domain.sprint.repository.SprintHistoryRepository;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+@AllArgsConstructor
+@Repository
+public class SprintHistoryRepositoryAdapter implements SprintHistoryRepository {
+    private final JpaSprintHistoryRepository jpaSprintHistoryRepository;
+    @Override
+    public SprintHistory save(SprintHistory entity) {
+        return SprintHistoryJpaMapper.toDomainEntity(
+            jpaSprintHistoryRepository.save(
+                SprintHistoryJpaMapper.toJpaEntity(entity)));
+    }
+
+    @Override
+    public SprintHistory findById(String s) {
+        return jpaSprintHistoryRepository.findById(s)
+            .map(SprintHistoryJpaMapper::toDomainEntity)
+            .orElseThrow(SprintHistoryNotFoundException::new);
+    }
+
+    @Override
+    public List<SprintHistory> findAll() {
+        return jpaSprintHistoryRepository.findAll()
+            .stream()
+            .map(SprintHistoryJpaMapper::toDomainEntity)
+            .toList();
+    }
+
+    @Override
+    public void deleteById(String s) {
+        jpaSprintHistoryRepository.deleteById(s);
+    }
+
+    @Override
+    public boolean existsById(String s) {
+        return jpaSprintHistoryRepository.existsById(s);
+    }
+}
