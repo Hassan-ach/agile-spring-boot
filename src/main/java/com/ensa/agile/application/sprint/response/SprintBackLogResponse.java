@@ -22,7 +22,7 @@ public class SprintBackLogResponse {
     private LocalDate startDate;
     private LocalDate endDate;
     private String goal;
-    private SprintHistoryResponse sprintHistory;
+    private List<SprintHistory> sprintHistories;
 
     private String createdBy;
     private LocalDateTime createdDate;

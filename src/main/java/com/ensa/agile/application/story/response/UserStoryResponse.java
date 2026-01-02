@@ -1,11 +1,10 @@
 package com.ensa.agile.application.story.response;
 
+import com.ensa.agile.application.task.response.TaskResponse;
+import com.ensa.agile.domain.story.entity.UserStoryHistory;
+import com.ensa.agile.domain.story.enums.MoscowType;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.ensa.agile.application.task.response.TaskResponse;
-import com.ensa.agile.domain.story.enums.MoscowType;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +21,8 @@ public class UserStoryResponse {
     private MoscowType priority;
     private Integer storyPoints;
     private String acceptanceCriteria;
-    private UserStoryHistoryResponse status;
-    
+    private UserStoryHistory status;
+
     private String createdBy;
     private LocalDateTime createdDate;
     private String lastModifiedBy;

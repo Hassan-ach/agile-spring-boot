@@ -1,7 +1,6 @@
 package com.ensa.agile.application.story.response;
 
 import com.ensa.agile.domain.story.enums.StoryStatus;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

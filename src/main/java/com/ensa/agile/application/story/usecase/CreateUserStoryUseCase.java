@@ -8,6 +8,9 @@ import com.ensa.agile.application.story.response.UserStoryResponse;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.product.repository.ProductBackLogRepository;
 import com.ensa.agile.domain.story.entity.UserStory;
+import com.ensa.agile.domain.story.entity.UserStoryHistory;
+import com.ensa.agile.domain.story.enums.StoryStatus;
+import com.ensa.agile.domain.story.repository.UserStoryHistoryRepository;
 import com.ensa.agile.domain.story.repository.UserStoryRepository;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +20,16 @@ public class CreateUserStoryUseCase
 
     private final UserStoryRepository userStoryRepository;
     private final ProductBackLogRepository productBackLogRepository;
+    private final UserStoryHistoryRepository userStoryHistoryRepository;
 
     public CreateUserStoryUseCase(ITransactionalWrapper tr,
                                   UserStoryRepository usr,
-                                  ProductBackLogRepository pbr) {
+                                  ProductBackLogRepository pbr,
+                                  UserStoryHistoryRepository ushr) {
         super(tr);
         this.userStoryRepository = usr;
         this.productBackLogRepository = pbr;
+        this.userStoryHistoryRepository = ushr;
     }
 
     @Override
@@ -31,16 +37,23 @@ public class CreateUserStoryUseCase
         ProductBackLog pb =
             this.productBackLogRepository.findById(request.getProductId());
 
-        UserStory us = UserStory.builder()
-                           .title(request.getTitle())
-                           .description(request.getDescription())
-                           .priority(request.getPriority())
-                           .storyPoints(request.getStoryPoints())
-                           .acceptanceCriteria(request.getAcceptanceCriteria())
-                           .productBackLog(pb)
-                           .build();
+        UserStory us = this.userStoryRepository.save(
+            UserStory.builder()
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .priority(request.getPriority())
+                .storyPoints(request.getStoryPoints())
+                .acceptanceCriteria(request.getAcceptanceCriteria())
+                .productBackLog(pb)
+                .build());
 
-        return UserStoryResponseMapper.toResponse(
-            this.userStoryRepository.save(us));
+        UserStoryHistory status = this.userStoryHistoryRepository.save(
+            UserStoryHistory.builder()
+                .userStory(us)
+                .note("User Story created with title: " + request.getTitle())
+                .status(StoryStatus.TODO)
+                .build());
+
+        return UserStoryResponseMapper.toResponse(us, status);
     }
 }

@@ -2,6 +2,7 @@ package com.ensa.agile.application.story.request;
 
 import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.story.enums.MoscowType;
+import com.ensa.agile.domain.story.enums.StoryStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +21,13 @@ public class UserStoryUpdateRequest {
     private MoscowType priority;
     private Integer storyPoints;
     private String acceptanceCriteria;
-    // private String sprintId;
-    // private String epicId;
+    private String sprintId;
+    private String epicId;
+
+    private StoryStatus status;
 
     // This constructor is for validation purposes
-    public UserStoryUpdateRequest(String productId, String sprintId,
+    public UserStoryUpdateRequest(String productId, String sprintId, String id,
                                   UserStoryUpdateRequest req) {
         if (req == null) {
             throw new IllegalArgumentException("request cannot be null");
@@ -75,7 +78,10 @@ public class UserStoryUpdateRequest {
             }
         }
 
-        this.id = sprintId;
+        this.id = id;
+        this.sprintId = sprintId;
         this.productId = productId;
+        this.epicId = req.getEpicId();
+        this.status = req.getStatus();
     }
 }

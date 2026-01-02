@@ -2,6 +2,7 @@ package com.ensa.agile.application.sprint.request;
 
 import com.ensa.agile.application.common.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
+import com.ensa.agile.domain.sprint.enums.SprintStatus;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,8 @@ public class SprintBackLogUpdateRequest {
     private LocalDate startDate;
     private LocalDate endDate;
     private String scrumMasterEmail;
+
+    private SprintStatus status;
 
     public SprintBackLogUpdateRequest(SprintBackLogUpdateRequest req,
                                       String id) {
@@ -69,5 +72,6 @@ public class SprintBackLogUpdateRequest {
         }
 
         this.id = id;
+        this.status = req.getStatus();
     }
 }
