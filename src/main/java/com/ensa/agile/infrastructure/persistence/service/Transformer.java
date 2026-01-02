@@ -4,17 +4,17 @@ import com.ensa.agile.application.epic.response.EpicResponse;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;
 import com.ensa.agile.application.product.response.ProjectMemberResponse;
 import com.ensa.agile.application.sprint.response.SprintBackLogResponse;
-import com.ensa.agile.application.sprint.response.SprintHistoryResponse;
 import com.ensa.agile.application.sprint.response.SprintMemberResponse;
-import com.ensa.agile.application.story.response.UserStoryHistoryResponse;
 import com.ensa.agile.application.story.response.UserStoryResponse;
-import com.ensa.agile.application.task.response.TaskHistoryResponse;
 import com.ensa.agile.application.task.response.TaskResponse;
 import com.ensa.agile.domain.product.enums.MemberStatus;
 import com.ensa.agile.domain.product.enums.RoleType;
+import com.ensa.agile.domain.sprint.entity.SprintHistory;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
+import com.ensa.agile.domain.story.entity.UserStoryHistory;
 import com.ensa.agile.domain.story.enums.MoscowType;
 import com.ensa.agile.domain.story.enums.StoryStatus;
+import com.ensa.agile.domain.task.entity.TaskHistory;
 import com.ensa.agile.domain.task.enums.TaskStatus;
 import com.ensa.agile.infrastructure.persistence.global.join.Row;
 import java.util.ArrayList;
@@ -150,12 +150,18 @@ public class Transformer {
 
         // Map Sprint History (Latest)
         if (row.getSprintHistoryId() != null) {
-            SprintHistoryResponse history = new SprintHistoryResponse();
-            history.setStatusId(row.getSprintHistoryId());
-            history.setStatus(
-                SprintStatus.valueOf(row.getSprintHistoryStatus()));
-            history.setNote(row.getSprintHistoryNote());
-            sprint.setSprintHistory(history);
+            // SprintHistoryResponse history = new SprintHistoryResponse();
+            // history.setStatusId(row.getSprintHistoryId());
+            // history.setStatus(
+            //     SprintStatus.valueOf(row.getSprintHistoryStatus()));
+            // history.setNote(row.getSprintHistoryNote());
+            // sprint.setStatus(history);
+            sprint.setStatus(
+                SprintHistory.builder()
+                    .id(row.getSprintHistoryId())
+                    .status(SprintStatus.valueOf(row.getSprintHistoryStatus()))
+                    .note(row.getSprintHistoryNote())
+                    .build());
         }
 
         sprint.setMembers(new ArrayList<>());
@@ -197,11 +203,18 @@ public class Transformer {
 
         // Map Story History (Latest)
         if (row.getStoryHistoryId() != null) {
-            UserStoryHistoryResponse history = new UserStoryHistoryResponse();
-            history.setStatusId(row.getStoryHistoryId());
-            history.setStatus(StoryStatus.valueOf(row.getStoryHistoryStatus()));
-            history.setNote(row.getStoryHistoryNote());
-            story.setStatus(history);
+            // UserStoryHistoryResponse history = new
+            // UserStoryHistoryResponse();
+            // history.setStatusId(row.getStoryHistoryId());
+            // history.setStatus(StoryStatus.valueOf(row.getStoryHistoryStatus()));
+            // history.setNote(row.getStoryHistoryNote());
+            // story.setStatus(history);
+            story.setStatus(
+                UserStoryHistory.builder()
+                    .id(row.getStoryHistoryId())
+                    .status(StoryStatus.valueOf(row.getStoryHistoryStatus()))
+                    .note(row.getStoryHistoryNote())
+                    .build());
         }
 
         story.setTasks(new ArrayList<>());
@@ -221,11 +234,17 @@ public class Transformer {
 
         // Map Task History (Latest)
         if (row.getTaskHistoryId() != null) {
-            TaskHistoryResponse history = new TaskHistoryResponse();
-            history.setStatusId(row.getTaskHistoryId());
-            history.setStatus(TaskStatus.valueOf(row.getTaskHistoryStatus()));
-            history.setNote(row.getTaskHistoryNote());
-            task.setStatus(history);
+            // TaskHistoryResponse history = new TaskHistoryResponse();
+            // history.setStatusId(row.getTaskHistoryId());
+            // history.setStatus(TaskStatus.valueOf(row.getTaskHistoryStatus()));
+            // history.setNote(row.getTaskHistoryNote());
+            // task.setStatus(history);
+            task.setStatus(
+                TaskHistory.builder()
+                    .id(row.getTaskHistoryId())
+                    .status(TaskStatus.valueOf(row.getTaskHistoryStatus()))
+                    .note(row.getTaskHistoryNote())
+                    .build());
         }
         return task;
     }

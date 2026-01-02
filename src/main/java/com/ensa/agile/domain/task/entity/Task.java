@@ -1,6 +1,7 @@
 package com.ensa.agile.domain.task.entity;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import com.ensa.agile.domain.user.entity.User;
@@ -41,5 +42,36 @@ public class Task extends BaseDomainEntity {
         this.actualHours = actualHours;
         this.taskHistories = taskHistories;
         this.status = status;
+    }
+    public void validate() {
+        if (title == null || title.isEmpty()) {
+            throw new ValidationException("Title cannot be null or empty");
+        }
+        if (description == null || description.isEmpty()) {
+            throw new ValidationException(
+                "Description cannot be null or empty");
+        }
+        if (estimatedHours != null && estimatedHours < 0) {
+            throw new ValidationException("Estimated hours cannot be negative");
+        }
+        if (actualHours != null && actualHours < 0) {
+            throw new ValidationException("Actual hours cannot be negative");
+        }
+    }
+    public void updateMetadata(String title, String description,
+                               Double estimatedHours, Double actualHours) {
+        if (title != null) {
+            this.title = title;
+        }
+        if (description != null) {
+            this.description = description;
+        }
+        if (estimatedHours != null) {
+            this.estimatedHours = estimatedHours;
+        }
+        if (actualHours != null) {
+            this.actualHours = actualHours;
+        }
+        validate();
     }
 }

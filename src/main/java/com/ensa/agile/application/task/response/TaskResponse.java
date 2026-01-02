@@ -1,5 +1,6 @@
 package com.ensa.agile.application.task.response;
 
+import com.ensa.agile.domain.task.entity.TaskHistory;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +17,7 @@ public class TaskResponse {
     private String description;
     private String assignee;
     private Double estimatedHours;
-    private TaskHistoryResponse status;
+    private TaskHistory status;
     private Double actualHours;
 
     private String createdBy;

@@ -2,6 +2,7 @@ package com.ensa.agile.application.task.request;
 
 import com.ensa.agile.application.common.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
+import com.ensa.agile.domain.task.enums.TaskStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +18,10 @@ public class TaskUpdateRequest {
     private String description;
     private Double estimatedHours;
     private String assigneeEmail;
+    private Double actualHours;
+
+    private TaskStatus status;
+
     private String UserStoryId;
     private String sprintId;
 
@@ -52,14 +57,25 @@ public class TaskUpdateRequest {
             }
         }
 
-        if (req.estimatedHours != null && req.estimatedHours < 0) {
+        if (req.estimatedHours != null && req.estimatedHours > 0) {
             this.estimatedHours = req.estimatedHours;
+        }
+        if (req.actualHours != null && req.actualHours > 0) {
+            this.actualHours = req.actualHours;
         }
 
         if (ValidationUtil.isValidEmail(req.assigneeEmail)) {
             this.assigneeEmail = req.assigneeEmail;
         } else if (req.assigneeEmail != null) {
             throw new ValidationException("Invalid assignee email format");
+        }
+
+        if (req.UserStoryId != null) {
+            this.UserStoryId = req.UserStoryId;
+        }
+
+        if (req.status != null) {
+            this.status = req.status;
         }
     }
 }

@@ -3,14 +3,23 @@ package com.ensa.agile.application.task.usecase;
 import com.ensa.agile.application.common.response.DeleteResponse;
 import com.ensa.agile.application.global.transaction.ITransactionalWrapper;
 import com.ensa.agile.application.global.usecase.BaseUseCase;
+import com.ensa.agile.domain.task.repository.TaskRepository;
 
 public class DeleteTaskUseCase extends BaseUseCase<String, DeleteResponse> {
+    private final TaskRepository taskRepository;
 
-    public DeleteTaskUseCase(ITransactionalWrapper tr) { super(tr); }
+    public DeleteTaskUseCase(ITransactionalWrapper tr,
+                             TaskRepository taskRepository) {
+        super(tr);
+        this.taskRepository = taskRepository;
+    }
 
     @Override
-    public DeleteResponse execute(String request) {
-        // TODO Auto-generated method stub
-        return null;
+    public DeleteResponse execute(String id) {
+        this.taskRepository.deleteById(id);
+        return DeleteResponse.builder()
+            .message("Task deleted successfully")
+            .success(true)
+            .build();
     }
 }
