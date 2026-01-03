@@ -1,15 +1,23 @@
 package com.ensa.agile.infrastructure.persistence.service;
 
+import com.ensa.agile.application.epic.request.EpicGetRequest;
+import com.ensa.agile.application.epic.response.EpicResponse;
 import com.ensa.agile.application.global.service.IFetchService;
 import com.ensa.agile.application.product.request.ProductBackLogGetRequest;
 import com.ensa.agile.application.product.response.ProductBackLogResponse;
-import com.ensa.agile.infrastructure.persistence.global.join.Row;
+import com.ensa.agile.application.sprint.request.SprintBackLogGetRequest;
+import com.ensa.agile.application.sprint.response.SprintBackLogResponse;
+import com.ensa.agile.application.story.request.UserStoryGetRequest;
+import com.ensa.agile.application.story.response.UserStoryResponse;
+import com.ensa.agile.infrastructure.persistence.jpa.global.join.Row;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
+
+enum Target { PRODUCT, SPRINT, EPIC, STORY }
 
 @Service
 public class FetchService implements IFetchService {
@@ -23,7 +31,6 @@ public class FetchService implements IFetchService {
         p.created_by AS productCreatedBy, p.created_date AS productCreatedDate,
         p.last_modified_by AS productLastModifiedBy, p.last_modified_date AS productLastModifiedDate
         """;
-
     private static final String NULL_MEMBER =
         ", CAST(NULL AS VARCHAR) AS projectMemberId, CAST(NULL AS VARCHAR) "
         + "AS projectMemberEmail, CAST(NULL AS VARCHAR) AS projectMemberRole, "
@@ -307,5 +314,20 @@ public class FetchService implements IFetchService {
     @Override
     public ProductBackLogResponse getResponse(ProductBackLogGetRequest req) {
         return Transformer.transform(this.fetch(req.getId(), req.getFields()));
+    }
+
+    @Override
+    public SprintBackLogResponse getResponse(SprintBackLogGetRequest req) {
+        return null;
+    }
+
+    @Override
+    public EpicResponse getResponse(EpicGetRequest req) {
+        return null;
+    }
+
+    @Override
+    public UserStoryResponse getResponse(UserStoryGetRequest req) {
+        return null;
     }
 }

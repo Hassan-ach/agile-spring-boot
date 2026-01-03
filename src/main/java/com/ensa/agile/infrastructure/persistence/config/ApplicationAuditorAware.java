@@ -8,8 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import com.ensa.agile.domain.user.entity.User;
-import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaEntity;
-import com.ensa.agile.infrastructure.persistence.user.jpa.UserJpaMapper;
+import com.ensa.agile.infrastructure.persistence.jpa.user.UserJpaEntity;
+import com.ensa.agile.infrastructure.persistence.jpa.user.UserJpaMapper;
 
 public class ApplicationAuditorAware implements AuditorAware<String> {
 

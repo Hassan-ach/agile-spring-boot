@@ -1,0 +1,24 @@
+package com.ensa.agile.infrastructure.persistence.jpa.epic;
+
+import com.ensa.agile.domain.story.enums.MoscowType;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
+class EpicRow {
+    private String epicId;
+    private String epicTitle;
+    private String epicDescription;
+
+    private String storyId;
+    private String storyTitle;
+    private String storyDescription;
+    private MoscowType priority;
+    private Integer storyPoints;
+    private String acceptanceCriteria;
+}

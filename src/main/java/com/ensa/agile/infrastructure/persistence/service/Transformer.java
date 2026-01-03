@@ -16,7 +16,7 @@ import com.ensa.agile.domain.story.enums.MoscowType;
 import com.ensa.agile.domain.story.enums.StoryStatus;
 import com.ensa.agile.domain.task.entity.TaskHistory;
 import com.ensa.agile.domain.task.enums.TaskStatus;
-import com.ensa.agile.infrastructure.persistence.global.join.Row;
+import com.ensa.agile.infrastructure.persistence.jpa.global.join.Row;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
