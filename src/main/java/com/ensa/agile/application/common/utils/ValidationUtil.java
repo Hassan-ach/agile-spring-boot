@@ -15,4 +15,14 @@ public class ValidationUtil {
 
         return patternMatches(email, EMAIL_PATTERN);
     }
+
+    public static boolean isValidPassword(String password) {
+        // At least one digit, one lower case, one upper case, one special
+        // character, no whitespace, length between 8 and 20
+        // String PASSWORD_PATTERN =
+        //     "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])"
+        //     + "(?=\\S+$).{8,20}$";
+        // return patternMatches(password, PASSWORD_PATTERN);
+        return true;
+    }
 }

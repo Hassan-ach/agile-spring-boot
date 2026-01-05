@@ -10,9 +10,9 @@ import lombok.experimental.SuperBuilder;
 @Getter
 public class TaskHistory extends BaseDomainEntity {
 
-    private Task task;
-    private TaskStatus status;
-    private String note;
+    private final Task task;
+    private final TaskStatus status;
+    private final String note;
 
     public TaskHistory(String id, Task task, TaskStatus status, String note,
                        LocalDateTime createdDate, String createdBy,

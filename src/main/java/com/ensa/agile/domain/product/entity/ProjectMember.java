@@ -1,6 +1,7 @@
 package com.ensa.agile.domain.product.entity;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.product.enums.MemberStatus;
 import com.ensa.agile.domain.product.enums.RoleType;
 import com.ensa.agile.domain.user.entity.User;
@@ -27,6 +28,35 @@ public class ProjectMember extends BaseDomainEntity {
         this.productBackLog = productBackLog;
         this.role = role;
         this.status = status;
+    }
+
+    public void updateMetadata(RoleType role, MemberStatus status) {
+        if (role != null) {
+            this.role = role;
+        }
+        if (status != null) {
+            this.status = status;
+        }
+        this.validate();
+    }
+
+    public void validate() {
+        if (this.user == null) {
+            throw new ValidationException(
+                "Project member must be associated with a user.");
+        }
+        if (this.productBackLog == null) {
+            throw new ValidationException(
+                "Project member must be associated with a product backlog.");
+        }
+        if (this.role == null) {
+            throw new ValidationException(
+                "Project member must have a role assigned.");
+        }
+        if (this.status == null) {
+            throw new ValidationException(
+                "Project member must have a status assigned.");
+        }
     }
 
     public void activate() {
