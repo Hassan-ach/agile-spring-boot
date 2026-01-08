@@ -1,7 +1,7 @@
 package com.ensa.agile.domain.user.entity;
 
-import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
+import com.ensa.agile.domain.global.utils.ValidationUtil;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,10 +33,11 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.emailVerified = emailVerified;
-        this.enabled = enabled;
-        this.locked = locked;
-        this.credentialsExpired = credentialsExpired;
+        this.emailVerified = emailVerified == null ? false : emailVerified;
+        this.enabled = enabled == null ? true : enabled;
+        this.locked = locked == null ? false : locked;
+        this.credentialsExpired =
+            credentialsExpired == null ? false : credentialsExpired;
         this.createdDate = createdDate;
 
         validate();
@@ -55,10 +56,12 @@ public class User {
         if (this.password == null || this.password.isEmpty()) {
             throw new ValidationException("Password cannot be null or empty");
         }
-        if (!ValidationUtil.isValidPassword(this.password)) {
-            throw new ValidationException(
-                "Password does not meet complexity requirements");
-        }
+
+        // if (!ValidationUtil.isValidPassword(this.password)) {
+        //     throw new ValidationException(
+        //         "Password does not meet complexity requirements");
+        // }
+
         if (!ValidationUtil.isValidEmail(this.email)) {
             throw new ValidationException("Email format is invalid");
         }
@@ -75,6 +78,8 @@ public class User {
         if (password != null) {
             this.password = password;
         }
+
+        validate();
     }
 
     public void verifyEmail() { this.emailVerified = true; }
