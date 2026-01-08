@@ -14,7 +14,6 @@ import com.ensa.agile.application.product.usecase.InviteScrumMasterUseCase;
 import com.ensa.agile.application.product.usecase.LoadProductBackLogUseCase;
 import com.ensa.agile.application.product.usecase.RemoveScrumMasterUseCase;
 import com.ensa.agile.application.product.usecase.UpdateProductBackLogInfoUseCase;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +41,7 @@ public class ProductBackLogController {
 
     @PostMapping
     public ResponseEntity<ProductBackLogResponse> createProductBacklog(
-        @Valid @RequestBody ProductBackLogCreateRequest request) {
+         @RequestBody ProductBackLogCreateRequest request) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(createProductBacklogUseCase.executeTransactionally(request));
@@ -70,7 +69,7 @@ public class ProductBackLogController {
     @PreAuthorize("@abacService.canAccessProject(#id,  'UPDATE')")
     public ResponseEntity<ProductBackLogResponse> updateProductBacklog(
         @PathVariable String id,
-        @Valid @RequestBody ProductBackLogUpdateRequest request) {
+         @RequestBody ProductBackLogUpdateRequest request) {
 
         return ResponseEntity.status(HttpStatus.OK)
             .body(updateProductBackLogUseCase.executeTransactionally(
@@ -79,7 +78,7 @@ public class ProductBackLogController {
 
     @PostMapping("/{id}/invite/scrum-master")
     public ResponseEntity<InviteResponse>
-    inviteScrumMaster(@Valid @RequestBody InviteRequest request,
+    inviteScrumMaster(@RequestBody InviteRequest request,
                       @PathVariable String id) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -89,7 +88,7 @@ public class ProductBackLogController {
 
     @PostMapping("/{id}/remove/scrum-master")
     public ResponseEntity<RemoveResponse>
-    removeScrumeMaster(@Valid @RequestBody RemoveRequest request,
+    removeScrumeMaster(@RequestBody RemoveRequest request,
                        @PathVariable String id) {
 
         return ResponseEntity.status(HttpStatus.OK)

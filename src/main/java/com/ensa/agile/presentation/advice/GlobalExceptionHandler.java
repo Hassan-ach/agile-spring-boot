@@ -1,8 +1,8 @@
 package com.ensa.agile.presentation.advice;
 
-import com.ensa.agile.application.product.exception.EpicNotFoundException;
+import com.ensa.agile.application.epic.exception.EpicNotFoundException;
 import com.ensa.agile.application.product.exception.ProductBackLogNotFoundException;
-import com.ensa.agile.application.product.exception.UserAlreadyInvitedException;
+import com.ensa.agile.application.user.exception.UserAlreadyInvitedException;
 import com.ensa.agile.application.user.exception.AuthenticationFailureException;
 import com.ensa.agile.application.user.exception.EmailAlreadyUsedException;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;

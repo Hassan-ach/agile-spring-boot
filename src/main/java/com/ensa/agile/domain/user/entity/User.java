@@ -1,6 +1,6 @@
 package com.ensa.agile.domain.user.entity;
 
-import com.ensa.agile.application.common.utils.ValidationUtil;
+import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,20 +22,6 @@ public class User {
     private boolean locked;
     private boolean credentialsExpired;
     private LocalDate createdDate;
-
-    // public User(String firstName, String lastName, String email,
-    //             String password) {
-    //
-    //     this.firstName = firstName;
-    //     this.lastName = lastName;
-    //     this.email = email;
-    //     this.password = password;
-    //     this.emailVerified = false;
-    //     this.enabled = true;
-    //     this.locked = false;
-    //     this.credentialsExpired = false;
-    //     this.createdDate = LocalDate.now();
-    // }
 
     public User(String id, String firstName, String lastName, String email,
                 String password, Boolean emailVerified, Boolean enabled,

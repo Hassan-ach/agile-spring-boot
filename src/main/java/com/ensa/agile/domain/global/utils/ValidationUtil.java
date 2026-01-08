@@ -1,4 +1,4 @@
-package com.ensa.agile.application.common.utils;
+package com.ensa.agile.domain.global.utils;
 
 import java.util.regex.Pattern;
 

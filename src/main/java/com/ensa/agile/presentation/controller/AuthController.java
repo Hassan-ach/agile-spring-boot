@@ -5,7 +5,6 @@ import com.ensa.agile.application.user.request.RegisterRequest;
 import com.ensa.agile.application.user.response.AuthenticationResponse;
 import com.ensa.agile.application.user.usecase.LoginUseCase;
 import com.ensa.agile.application.user.usecase.RegisterUseCase;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +24,19 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-        @Valid @RequestBody RegisterRequest request) {
+        @RequestBody RegisterRequest request) {
 
         AuthenticationResponse response =
-            registerUseCase.executeTransactionally(request);
+            registerUseCase.executeTransactionally(
+                new RegisterRequest(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse>
-    login(@Valid @RequestBody AuthenticationRequest request) {
-        AuthenticationResponse response = loginUseCase.execute(request);
+    login(@RequestBody AuthenticationRequest request) {
+        AuthenticationResponse response =
+            loginUseCase.execute(new AuthenticationRequest(request));
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 

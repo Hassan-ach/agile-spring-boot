@@ -11,7 +11,7 @@ public interface JpaEpicRepository
     List<EpicJpaEntity> findAllByProductBackLog_Id(String projectId);
 
     @Query("""
-    SELECT new com.ensa.agile.infrastructure.persistence.epic.jpa.EpicRow(
+    SELECT new com.ensa.agile.infrastructure.persistence.jpa.epic.EpicRow(
         e.id,
         e.title,
         e.description,

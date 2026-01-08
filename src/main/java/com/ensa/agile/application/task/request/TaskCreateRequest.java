@@ -1,6 +1,6 @@
 package com.ensa.agile.application.task.request;
 
-import com.ensa.agile.application.common.utils.ValidationUtil;
+import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

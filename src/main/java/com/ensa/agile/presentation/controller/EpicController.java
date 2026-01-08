@@ -10,7 +10,6 @@ import com.ensa.agile.application.epic.usecase.CreateEpicUseCase;
 import com.ensa.agile.application.epic.usecase.DeleteEpicUseCase;
 import com.ensa.agile.application.epic.usecase.GetEpicUseCase;
 import com.ensa.agile.application.epic.usecase.UpdateEpicUseCase;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +36,7 @@ public class EpicController {
     @PostMapping
     public ResponseEntity<EpicResponse>
     createEpic(@PathVariable String productId,
-               @Valid @RequestBody EpicCreateRequest request) {
+               @RequestBody EpicCreateRequest request) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
             .body(createEpicUseCase.executeTransactionally(
@@ -69,7 +68,7 @@ public class EpicController {
     deleteEpic(@PathVariable String productId, @PathVariable String epicId) {
 
         deleteEpicUseCase.executeTransactionally(
-            EpicRequest.builder().epicId(epicId).productId(productId).build());
+            new EpicRequest(epicId, productId));
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

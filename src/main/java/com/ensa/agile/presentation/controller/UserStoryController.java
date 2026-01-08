@@ -3,7 +3,6 @@ package com.ensa.agile.presentation.controller;
 import com.ensa.agile.application.story.request.UserStoryCreateRequest;
 import com.ensa.agile.application.story.response.UserStoryResponse;
 import com.ensa.agile.application.story.usecase.CreateUserStoryUseCase;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +21,7 @@ public class UserStoryController {
 
     @PostMapping
     public ResponseEntity<UserStoryResponse>
-    createUserStory(@Valid @RequestBody UserStoryCreateRequest request,
+    createUserStory(@RequestBody UserStoryCreateRequest request,
                     @PathVariable String productId) {
 
         return ResponseEntity.status(HttpStatus.CREATED)
