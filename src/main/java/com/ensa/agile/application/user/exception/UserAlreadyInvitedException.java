@@ -1,4 +1,4 @@
-package com.ensa.agile.application.product.exception;
+package com.ensa.agile.application.user.exception;
 
 import com.ensa.agile.domain.global.exception.DomainException;
 

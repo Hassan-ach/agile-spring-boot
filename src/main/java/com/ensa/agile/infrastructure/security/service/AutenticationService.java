@@ -2,7 +2,7 @@ package com.ensa.agile.infrastructure.security.service;
 
 import com.ensa.agile.application.user.exception.AuthenticationFailureException;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
-import com.ensa.agile.application.user.security.IAuthenticationService;
+import com.ensa.agile.application.user.security.service.IAuthenticationService;
 import com.ensa.agile.domain.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;

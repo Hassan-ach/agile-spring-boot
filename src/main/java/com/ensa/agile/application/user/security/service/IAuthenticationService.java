@@ -1,4 +1,4 @@
-package com.ensa.agile.application.user.security;
+package com.ensa.agile.application.user.security.service;
 
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 

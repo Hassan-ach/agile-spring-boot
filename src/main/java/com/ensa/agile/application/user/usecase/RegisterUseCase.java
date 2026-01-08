@@ -7,7 +7,7 @@ import com.ensa.agile.application.user.mapper.AuthenticationResponseMapper;
 import com.ensa.agile.application.user.mapper.RegisterRequestMapper;
 import com.ensa.agile.application.user.request.RegisterRequest;
 import com.ensa.agile.application.user.response.AuthenticationResponse;
-import com.ensa.agile.application.user.security.IAuthenticationService;
+import com.ensa.agile.application.user.security.service.IAuthenticationService;
 import com.ensa.agile.application.user.security.IPasswordEncoder;
 import com.ensa.agile.domain.user.entity.User;
 import com.ensa.agile.domain.user.repository.UserRepository;

@@ -7,7 +7,7 @@ import com.ensa.agile.application.global.usecase.BaseUseCase;
 import com.ensa.agile.application.user.mapper.AuthenticationResponseMapper;
 import com.ensa.agile.application.user.request.AuthenticationRequest;
 import com.ensa.agile.application.user.response.AuthenticationResponse;
-import com.ensa.agile.application.user.security.IAuthenticationService;
+import com.ensa.agile.application.user.security.service.IAuthenticationService;
 
 @Component
 public class LoginUseCase
