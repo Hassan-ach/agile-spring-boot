@@ -58,12 +58,12 @@ public class ProjectMember extends BaseDomainEntity {
 
     public void activate() {
         if (this.user == null) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Cannot activate a project member without a user.");
         }
         if (this.status != MemberStatus.INVITED ||
             this.status == MemberStatus.ACTIVE) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Can only activate a project member who is in INVITED status.");
         }
         this.status = MemberStatus.ACTIVE;
@@ -72,20 +72,19 @@ public class ProjectMember extends BaseDomainEntity {
 
     public void deactivate() {
         if (this.user == null) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Cannot deactivate a project member without a user.");
         }
         if (this.status != MemberStatus.ACTIVE) {
-            throw new IllegalStateException("Can only deactivate a project "
-                                            +
-                                            "member who is in ACTIVE status.");
+            throw new ValidationException("Can only deactivate a project "
+                                          + "member who is in ACTIVE status.");
         }
         this.status = MemberStatus.INACTIVE;
     }
 
     public void setProducOwnerRole() {
         if (this.role == RoleType.PRODUCT_OWNER) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Project member is already a Product Owner.");
         }
         this.role = RoleType.PRODUCT_OWNER;
@@ -93,7 +92,7 @@ public class ProjectMember extends BaseDomainEntity {
 
     public void setScrumMasterRole() {
         if (this.role == RoleType.SCRUM_MASTER) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Project member is already a Scrum Master.");
         }
         this.role = RoleType.SCRUM_MASTER;
@@ -101,7 +100,7 @@ public class ProjectMember extends BaseDomainEntity {
 
     public void setDeveloperRole() {
         if (this.role == RoleType.DEVELOPER) {
-            throw new IllegalStateException(
+            throw new ValidationException(
                 "Project member is already a Developer.");
         }
         this.role = RoleType.DEVELOPER;
