@@ -4,7 +4,7 @@ import com.ensa.agile.domain.global.entity.BaseDomainEntity;
 import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +20,15 @@ public class Epic extends BaseDomainEntity {
     private ProductBackLog productBackLog;
     private List<UserStory> userStories;
 
-    public Epic(String id, String title, String description,
-                ProductBackLog productBackLog, List<UserStory> userStories,
-                LocalDateTime createdDate, String createdBy,
-                LocalDateTime lastModifiedDate, String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.title = title;
-        this.description = description;
-        this.productBackLog = productBackLog;
-        this.userStories = userStories;
+    protected Epic(EpicBuilder<?, ?> b) {
+        super(b);
+        this.title = b.title;
+        this.description = b.description;
+        this.productBackLog = b.productBackLog;
+        this.userStories =
+            b.userStories != null ? b.userStories : new ArrayList<>();
+
+        validate();
     }
 
     public void updateMetadata(String title, String description) {

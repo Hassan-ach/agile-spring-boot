@@ -13,38 +13,29 @@ import lombok.Getter;
 public class User {
 
     private String id;
-
     private String firstName;
-
     private String lastName;
-
     private String email;
-
     private String password;
-
     private boolean emailVerified;
-
     private boolean enabled;
-
     private boolean locked;
-
     private boolean credentialsExpired;
-
     private LocalDate createdDate;
 
-    public User(String firstName, String lastName, String email,
-                String password) {
-
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.emailVerified = false;
-        this.enabled = true;
-        this.locked = false;
-        this.credentialsExpired = false;
-        this.createdDate = LocalDate.now();
-    }
+    // public User(String firstName, String lastName, String email,
+    //             String password) {
+    //
+    //     this.firstName = firstName;
+    //     this.lastName = lastName;
+    //     this.email = email;
+    //     this.password = password;
+    //     this.emailVerified = false;
+    //     this.enabled = true;
+    //     this.locked = false;
+    //     this.credentialsExpired = false;
+    //     this.createdDate = LocalDate.now();
+    // }
 
     public User(String id, String firstName, String lastName, String email,
                 String password, Boolean emailVerified, Boolean enabled,
@@ -61,6 +52,8 @@ public class User {
         this.locked = locked;
         this.credentialsExpired = credentialsExpired;
         this.createdDate = createdDate;
+
+        validate();
     }
 
     public void validate() {

@@ -9,12 +9,16 @@ public class SprintMemberJpaMapper {
         if (jpaEntity == null) {
             return null;
         }
-        return new SprintMember(
-            jpaEntity.getId(),
-            UserJpaMapper.toDomainEntity(jpaEntity.getUser()),
-            SprintBackLogJpaMapper.toDomainEntity(jpaEntity.getSprintBackLog()),
-            jpaEntity.getCreatedDate(), jpaEntity.getCreatedBy(),
-            jpaEntity.getLastModifiedDate(), jpaEntity.getLastModifiedBy());
+        return SprintMember.builder()
+            .id(jpaEntity.getId())
+            .user(UserJpaMapper.toDomainEntity(jpaEntity.getUser()))
+            .sprintBackLog(SprintBackLogJpaMapper.toDomainEntity(
+                jpaEntity.getSprintBackLog()))
+            .createdDate(jpaEntity.getCreatedDate())
+            .createdBy(jpaEntity.getCreatedBy())
+            .lastModifiedDate(jpaEntity.getLastModifiedDate())
+            .lastModifiedBy(jpaEntity.getLastModifiedBy())
+            .build();
     }
 
     public static SprintMemberJpaEntity toJpaEntity(SprintMember domainEntity) {

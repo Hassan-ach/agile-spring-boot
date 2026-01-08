@@ -5,7 +5,6 @@ import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.product.enums.MemberStatus;
 import com.ensa.agile.domain.product.enums.RoleType;
 import com.ensa.agile.domain.user.entity.User;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -18,16 +17,14 @@ public class ProjectMember extends BaseDomainEntity {
     private RoleType role;
     private MemberStatus status;
 
-    public ProjectMember(String id, User user, ProductBackLog productBackLog,
-                         RoleType role, MemberStatus status,
-                         LocalDateTime createdDate, String createdBy,
-                         LocalDateTime lastModifiedDate,
-                         String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.user = user;
-        this.productBackLog = productBackLog;
-        this.role = role;
-        this.status = status;
+    protected ProjectMember(ProjectMemberBuilder<?, ?> b) {
+        super(b);
+        this.user = b.user;
+        this.productBackLog = b.productBackLog;
+        this.role = b.role;
+        this.status = b.status;
+
+        validate();
     }
 
     public void updateMetadata(RoleType role, MemberStatus status) {

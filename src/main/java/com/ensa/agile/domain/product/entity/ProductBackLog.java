@@ -5,7 +5,7 @@ import com.ensa.agile.domain.global.entity.BaseDomainEntity;
 import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,29 +23,42 @@ public class ProductBackLog extends BaseDomainEntity {
     private List<ProjectMember> projectMembers;
     private List<SprintBackLog> sprintBackLogs;
 
-    public ProductBackLog(String id, String name, String description,
-                          List<Epic> epics, List<UserStory> userStories,
-                          List<ProjectMember> projectMembers,
-                          List<SprintBackLog> sprintBackLogs,
-                          LocalDateTime createdDate, String createdBy,
-                          LocalDateTime lastModifiedDate,
-                          String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.name = name;
-        this.description = description;
-        this.epics = epics;
-        this.userStories = userStories;
-        this.projectMembers = projectMembers;
-        this.sprintBackLogs = sprintBackLogs;
+    // public ProductBackLog(String id, String name, String description,
+    //                       List<Epic> epics, List<UserStory> userStories,
+    //                       List<ProjectMember> projectMembers,
+    //                       List<SprintBackLog> sprintBackLogs,
+    //                       LocalDateTime createdDate, String createdBy,
+    //                       LocalDateTime lastModifiedDate,
+    //                       String lastModifiedBy) {
+    //     super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
+    //     this.name = name;
+    //     this.description = description;
+    //     this.epics = epics;
+    //     this.userStories = userStories;
+    //     this.projectMembers = projectMembers;
+    //     this.sprintBackLogs = sprintBackLogs;
+    // }
+
+    protected ProductBackLog(ProductBackLogBuilder<?, ?> b) {
+        super(b);
+        this.name = b.name;
+        this.description = b.description;
+        this.epics = b.epics != null ? b.epics : new ArrayList<>();
+        this.userStories =
+            b.userStories != null ? b.userStories : new ArrayList<>();
+        this.projectMembers =
+            b.projectMembers != null ? b.projectMembers : new ArrayList<>();
+        this.sprintBackLogs =
+            b.sprintBackLogs != null ? b.sprintBackLogs : new ArrayList<>();
+
+        validate();
     }
 
     public void updateMetadata(String name, String description) {
-        if (name != null) {
+        if (name != null)
             this.name = name;
-        }
-        if (description != null) {
+        if (description != null)
             this.description = description;
-        }
 
         this.validate();
     }

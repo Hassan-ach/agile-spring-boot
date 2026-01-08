@@ -7,7 +7,7 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.enums.MoscowType;
 import com.ensa.agile.domain.task.entity.Task;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,27 +30,24 @@ public class UserStory extends BaseDomainEntity {
     private List<UserStoryHistory> userStoryHistories;
     private UserStoryHistory status;
 
-    public UserStory(String id, String title, String description,
-                     MoscowType priority, Integer storyPoints,
-                     String acceptanceCriteria, Epic epic,
-                     ProductBackLog productBackLog, SprintBackLog sprintBackLog,
-                     List<Task> tasks,
-                     List<UserStoryHistory> userStoryHistories,
-                     UserStoryHistory status, LocalDateTime createdDate,
-                     String createdBy, LocalDateTime lastModifiedDate,
-                     String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.title = title;
-        this.description = description;
-        this.priority = priority;
-        this.storyPoints = storyPoints;
-        this.acceptanceCriteria = acceptanceCriteria;
-        this.epic = epic;
-        this.productBackLog = productBackLog;
-        this.sprintBackLog = sprintBackLog;
-        this.tasks = tasks;
-        this.userStoryHistories = userStoryHistories;
-        this.status = status;
+
+    protected UserStory(UserStoryBuilder<?, ?> b) {
+        super(b);
+        this.title = b.title;
+        this.description = b.description;
+        this.priority = b.priority;
+        this.storyPoints = b.storyPoints;
+        this.acceptanceCriteria = b.acceptanceCriteria;
+        this.epic = b.epic;
+        this.productBackLog = b.productBackLog;
+        this.sprintBackLog = b.sprintBackLog;
+        this.tasks = b.tasks != null ? b.tasks : new ArrayList<>();
+        this.userStoryHistories = b.userStoryHistories != null
+                                      ? b.userStoryHistories
+                                      : new ArrayList<>();
+        this.status = b.status;
+
+        validate();
     }
 
     public void validate() {
@@ -73,6 +70,11 @@ public class UserStory extends BaseDomainEntity {
             acceptanceCriteria.isBlank()) {
             throw new ValidationException(
                 "Acceptance criteria cannot be null or empty");
+        }
+
+        if (productBackLog == null) {
+            throw new ValidationException(
+                "User story must be associated with a product backlog.");
         }
     }
 

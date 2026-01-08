@@ -1,8 +1,8 @@
 package com.ensa.agile.domain.sprint.entity;
 
 import com.ensa.agile.domain.global.entity.BaseDomainEntity;
+import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
-import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
@@ -11,18 +11,32 @@ import lombok.experimental.SuperBuilder;
 public class SprintHistory extends BaseDomainEntity {
 
     private final SprintBackLog sprint;
-
     private final SprintStatus status;
-
     private final String note;
 
-    public SprintHistory(String id, SprintBackLog sprint, SprintStatus status,
-                         String note, LocalDateTime createdDate,
-                         String createdBy, LocalDateTime lastModifiedDate,
-                         String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.sprint = sprint;
-        this.status = status;
-        this.note = note;
+    protected SprintHistory(SprintHistoryBuilder<?, ?> b) {
+        super(b);
+        this.sprint = b.sprint;
+        this.status = b.status;
+        this.note = b.note;
+
+        validate();
+    }
+
+    public void validate() {
+        if (this.sprint == null) {
+            throw new ValidationException(
+                "SprintHistory must be associated with a SprintBackLog.");
+        }
+
+        if (this.status == null) {
+            throw new ValidationException(
+                "SprintHistory must have a valid status.");
+        }
+
+        if (this.note != null && this.note.length() > 500) {
+            throw new ValidationException(
+                "SprintHistory note cannot exceed 500 characters.");
+        }
     }
 }

@@ -5,7 +5,7 @@ import com.ensa.agile.domain.global.exception.ValidationException;
 import com.ensa.agile.domain.sprint.entity.SprintBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import com.ensa.agile.domain.user.entity.User;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,22 +26,19 @@ public class Task extends BaseDomainEntity {
     private List<TaskHistory> taskHistories;
     private TaskHistory status;
 
-    public Task(String id, String title, String description,
-                UserStory userStory, SprintBackLog sprintBackLog, User assignee,
-                Double estimatedHours, Double actualHours,
-                List<TaskHistory> taskHistories, TaskHistory status,
-                LocalDateTime createdDate, String createdBy,
-                LocalDateTime lastModifiedDate, String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.title = title;
-        this.description = description;
-        this.userStory = userStory;
-        this.sprintBackLog = sprintBackLog;
-        this.assignee = assignee;
-        this.estimatedHours = estimatedHours;
-        this.actualHours = actualHours;
-        this.taskHistories = taskHistories;
-        this.status = status;
+    protected Task(TaskBuilder<?, ?> b) {
+        super(b);
+        this.title = b.title;
+        this.description = b.description;
+        this.userStory = b.userStory;
+        this.sprintBackLog = b.sprintBackLog;
+        this.assignee = b.assignee;
+        this.estimatedHours = b.estimatedHours;
+        this.actualHours = b.actualHours;
+        this.taskHistories =
+            b.taskHistories != null ? b.taskHistories : new ArrayList<>();
+        this.status = b.status;
+        validate();
     }
     public void validate() {
         if (title == null || title.isEmpty()) {
@@ -56,6 +53,12 @@ public class Task extends BaseDomainEntity {
         }
         if (actualHours != null && actualHours < 0) {
             throw new ValidationException("Actual hours cannot be negative");
+        }
+        if (userStory == null) {
+            throw new ValidationException("User Story cannot be null");
+        }
+        if (sprintBackLog == null) {
+            throw new ValidationException("Sprint Backlog cannot be null");
         }
     }
     public void updateMetadata(String title, String description,

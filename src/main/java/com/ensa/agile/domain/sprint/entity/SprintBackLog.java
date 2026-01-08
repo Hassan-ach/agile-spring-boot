@@ -6,7 +6,7 @@ import com.ensa.agile.domain.product.entity.ProductBackLog;
 import com.ensa.agile.domain.story.entity.UserStory;
 import com.ensa.agile.domain.user.entity.User;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,25 +28,21 @@ public class SprintBackLog extends BaseDomainEntity {
     private SprintHistory status;
     private List<SprintHistory> sprintHistories;
 
-    public SprintBackLog(String id, String name, ProductBackLog productBackLog,
-                         User scrumMaster, List<SprintMember> sprintMembers,
-                         List<UserStory> userStories, LocalDate startDate,
-                         LocalDate endDate, String goal, SprintHistory status,
-                         List<SprintHistory> sprintHistories,
-                         LocalDateTime createdDate, String createdBy,
-                         LocalDateTime lastModifiedDate,
-                         String lastModifiedBy) {
-        super(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy);
-        this.name = name;
-        this.productBackLog = productBackLog;
-        this.scrumMaster = scrumMaster;
-        this.members = sprintMembers;
-        this.userStories = userStories;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.goal = goal;
-        this.status = status;
-        this.sprintHistories = sprintHistories;
+    protected SprintBackLog(SprintBackLogBuilder<?, ?> b) {
+        super(b);
+        this.name = b.name;
+        this.productBackLog = b.productBackLog;
+        this.scrumMaster = b.scrumMaster;
+        this.members = b.members != null ? b.members : new ArrayList<>();
+        this.userStories =
+            b.userStories != null ? b.userStories : new ArrayList<>();
+        this.startDate = b.startDate;
+        this.endDate = b.endDate;
+        this.goal = b.goal;
+        this.status = b.status;
+        this.sprintHistories =
+            b.sprintHistories != null ? b.sprintHistories : new ArrayList<>();
+        validate();
     }
 
     public void updateMetadata(String name, LocalDate startDate,
@@ -91,6 +87,11 @@ public class SprintBackLog extends BaseDomainEntity {
 
         if (scrumMaster == null) {
             throw new ValidationException("Scrum master must be assigned");
+        }
+
+        if (productBackLog == null) {
+            throw new ValidationException(
+                "Sprint must be associated with a Product Backlog");
         }
     }
 }
