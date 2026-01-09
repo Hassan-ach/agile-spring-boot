@@ -1,4 +1,4 @@
-package com.ensa.agile.domain.testfactory;
+package com.ensa.agile.testfactory;
 
 import com.ensa.agile.domain.product.entity.ProductBackLog;
 

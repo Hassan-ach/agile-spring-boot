@@ -60,6 +60,9 @@ public class Task extends BaseDomainEntity {
         if (sprintBackLog == null) {
             throw new ValidationException("Sprint Backlog cannot be null");
         }
+        if (assignee == null) {
+            throw new ValidationException("Assignee cannot be null");
+        }
     }
     public void updateMetadata(String title, String description,
                                Double estimatedHours, Double actualHours) {

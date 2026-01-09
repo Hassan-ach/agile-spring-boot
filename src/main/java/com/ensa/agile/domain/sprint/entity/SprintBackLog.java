@@ -30,15 +30,16 @@ public class SprintBackLog extends BaseDomainEntity {
 
     protected SprintBackLog(SprintBackLogBuilder<?, ?> b) {
         super(b);
-        this.name = b.name;
-        this.productBackLog = b.productBackLog;
-        this.scrumMaster = b.scrumMaster;
+        this.name = b.name != null ? b.name : "";
+        this.productBackLog =
+            b.productBackLog != null ? b.productBackLog : null;
+        this.scrumMaster = b.scrumMaster != null ? b.scrumMaster : null;
         this.members = b.members != null ? b.members : new ArrayList<>();
         this.userStories =
             b.userStories != null ? b.userStories : new ArrayList<>();
         this.startDate = b.startDate;
         this.endDate = b.endDate;
-        this.goal = b.goal;
+        this.goal = b.goal != null ? b.goal : "";
         this.status = b.status;
         this.sprintHistories =
             b.sprintHistories != null ? b.sprintHistories : new ArrayList<>();

@@ -30,7 +30,6 @@ public class UserStory extends BaseDomainEntity {
     private List<UserStoryHistory> userStoryHistories;
     private UserStoryHistory status;
 
-
     protected UserStory(UserStoryBuilder<?, ?> b) {
         super(b);
         this.title = b.title;
@@ -91,5 +90,7 @@ public class UserStory extends BaseDomainEntity {
             this.storyPoints = storyPoints;
         if (acceptanceCriteria != null)
             this.acceptanceCriteria = acceptanceCriteria;
+
+        validate();
     }
 }
