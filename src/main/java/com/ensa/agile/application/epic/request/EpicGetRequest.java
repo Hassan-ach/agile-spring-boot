@@ -1,25 +1,13 @@
 package com.ensa.agile.application.epic.request;
 
-import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import com.ensa.agile.application.common.request.GetRequest;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
-@Builder
-@Data
-public class EpicGetRequest {
-    String epicId;
+@SuperBuilder
+public class EpicGetRequest extends GetRequest {
     String productId;
-    List<String> fields;
 
-    public EpicGetRequest(String productId, String epicId, String with) {
-        this.productId = productId;
-        this.epicId = epicId;
-        this.fields = List.of(with.split(","))
-                          .stream()
-                          .map(String::trim)
-                          .map(String::toUpperCase)
-                          .toList();
+    public EpicGetRequest(String productId, String id, String with) {
+        super(id, with);
     }
 }

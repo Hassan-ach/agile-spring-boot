@@ -22,6 +22,6 @@ public class GetEpicUseCase extends BaseUseCase<EpicGetRequest, EpicResponse> {
     public EpicResponse execute(EpicGetRequest req) {
 
         return EpicResponseMapper.toResponse(
-            this.epicRepository.findById(req.getEpicId()));
+            this.epicRepository.findById(req.getId()));
     }
 }

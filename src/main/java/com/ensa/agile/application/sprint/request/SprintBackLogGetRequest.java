@@ -1,29 +1,10 @@
 package com.ensa.agile.application.sprint.request;
 
-import java.util.List;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.ensa.agile.application.common.request.GetRequest;
+import lombok.experimental.SuperBuilder;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-@Data
-public class SprintBackLogGetRequest {
-    private String id;
-    private List<String> fields;
+@SuperBuilder
+public class SprintBackLogGetRequest extends GetRequest {
 
-    public SprintBackLogGetRequest(String id, String with) {
-        this.id = id;
-        if (with == null || with.isBlank()) {
-            this.fields = List.of();
-        } else {
-            this.fields = List.of(with.split(","))
-                              .stream()
-                              .map(String::trim)
-                              .map(String::toUpperCase)
-                              .toList();
-        }
-    }
+    public SprintBackLogGetRequest(String id, String with) { super(id, with); }
 }
