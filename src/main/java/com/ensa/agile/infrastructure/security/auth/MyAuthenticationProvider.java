@@ -3,7 +3,7 @@ package com.ensa.agile.infrastructure.security.auth;
 import com.ensa.agile.application.user.exception.AuthenticationFailureException;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 import com.ensa.agile.application.user.security.IPasswordEncoder;
-import com.ensa.agile.application.user.usecase.LoadUserInfoUseCase;
+import com.ensa.agile.application.user.usecase.GetUserInfoUseCase;
 import com.ensa.agile.domain.user.entity.User;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 public class MyAuthenticationProvider implements AuthenticationProvider {
-    private final LoadUserInfoUseCase userInfoUseCase;
+    private final GetUserInfoUseCase userInfoUseCase;
     private final IPasswordEncoder passwordEncoder;
 
     @Override

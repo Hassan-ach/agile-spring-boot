@@ -7,12 +7,12 @@ import com.ensa.agile.domain.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoadUserInfoUseCase extends BaseUseCase<String, User> {
+public class GetUserInfoUseCase extends BaseUseCase<String, User> {
 
     private final UserRepository userRepository;
 
-    public LoadUserInfoUseCase(UserRepository userRepository,
-                               ITransactionalWrapper transactionalWrapper) {
+    public GetUserInfoUseCase(UserRepository userRepository,
+                              ITransactionalWrapper transactionalWrapper) {
 
         super(transactionalWrapper);
         this.userRepository = userRepository;

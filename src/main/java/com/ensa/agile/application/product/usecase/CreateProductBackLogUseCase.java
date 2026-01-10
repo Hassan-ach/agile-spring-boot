@@ -44,6 +44,7 @@ public class CreateProductBackLogUseCase
         ProductBackLog pbSaved = productBackLogRepository.save(pb);
 
         User u = currentUserService.getCurrentUser();
+
         ProjectMember pm = ProjectMember.builder()
                                .user(u)
                                .productBackLog(pbSaved)

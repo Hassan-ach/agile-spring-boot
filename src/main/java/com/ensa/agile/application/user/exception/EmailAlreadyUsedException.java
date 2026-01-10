@@ -1,8 +1,8 @@
 package com.ensa.agile.application.user.exception;
 
-import com.ensa.agile.domain.global.exception.AlreadyExistException;
+import com.ensa.agile.domain.global.exception.AlreadyExistsException;
 
-public class EmailAlreadyUsedException extends AlreadyExistException {
+public class EmailAlreadyUsedException extends AlreadyExistsException {
 
     public EmailAlreadyUsedException(String email) {
         super("this email: " + email + " already used");

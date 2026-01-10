@@ -7,7 +7,7 @@ import com.ensa.agile.application.user.exception.AuthenticationFailureException;
 import com.ensa.agile.application.user.exception.EmailAlreadyUsedException;
 import com.ensa.agile.application.user.exception.InvalidCredentialsException;
 import com.ensa.agile.application.user.exception.UserNotFoundException;
-import com.ensa.agile.domain.global.exception.AlreadyExistException;
+import com.ensa.agile.domain.global.exception.AlreadyExistsException;
 import com.ensa.agile.domain.global.exception.ApplicationException;
 import com.ensa.agile.domain.global.exception.DataBaseTransactionException;
 import com.ensa.agile.domain.global.exception.DomainException;
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler({AlreadyExistException.class,
+    @ExceptionHandler({AlreadyExistsException.class,
                        EmailAlreadyUsedException.class,
                        UserAlreadyInvitedException.class})
     public ResponseEntity<Map<String, String>>
