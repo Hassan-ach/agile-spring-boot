@@ -27,14 +27,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class RegisterUseCaseTest {
 
-    @Mock private UserRepository userRepository;
-
-    @Mock private IPasswordEncoder passwordEncoder;
-
-    @Mock private IAuthenticationService authenticationService;
-
     @Mock private ITransactionalWrapper transactionalWrapper;
-
+    @Mock private UserRepository userRepository;
+    @Mock private IPasswordEncoder passwordEncoder;
+    @Mock private IAuthenticationService authenticationService;
     @InjectMocks private RegisterUseCase registerUseCase;
 
     @Test
@@ -46,7 +42,6 @@ class RegisterUseCaseTest {
         String encodedPassword = "EncodedPassword123";
         String jwtToken = "jwt_token";
 
-        // When
         when(userRepository.existsByEmail(request.getEmail()))
             .thenReturn(false);
         when(passwordEncoder.encode(request.getPassword()))
@@ -54,10 +49,10 @@ class RegisterUseCaseTest {
         when(authenticationService.generateToken(request.getEmail()))
             .thenReturn(jwtToken);
 
-        // Then
+        // When
         AuthenticationResponse response = registerUseCase.execute(request);
 
-        // Assert
+        // Then
         assertNotNull(response);
         assertEquals(response.getAccessToken(), jwtToken);
 
