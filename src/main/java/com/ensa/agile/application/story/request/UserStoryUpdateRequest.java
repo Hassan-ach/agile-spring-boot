@@ -30,7 +30,11 @@ public class UserStoryUpdateRequest {
     public UserStoryUpdateRequest(String productId, String sprintId, String id,
                                   UserStoryUpdateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
+        }
+
+        if (id == null || id.isBlank()) {
+            throw new ValidationException("id cannot be null or blank");
         }
 
         if (req.getTitle() == null && req.getDescription() == null &&

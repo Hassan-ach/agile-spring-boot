@@ -20,7 +20,7 @@ public class EpicCreateRequest {
 
     public EpicCreateRequest(String productId, EpicCreateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
         }
 
         if (req.getTitle() == null || req.getTitle().isBlank()) {

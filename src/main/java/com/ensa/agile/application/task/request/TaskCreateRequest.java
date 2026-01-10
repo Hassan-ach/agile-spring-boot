@@ -1,7 +1,7 @@
 package com.ensa.agile.application.task.request;
 
-import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
+import com.ensa.agile.domain.global.utils.ValidationUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,12 +17,20 @@ public class TaskCreateRequest {
     private Double estimatedHours;
     private String assigneeEmail;
 
-    private String UserStoryId;
+    private String userStoryId;
     private String sprintId;
 
-    public TaskCreateRequest(String sprintId, TaskCreateRequest req) {
+    public TaskCreateRequest(String sprintId, String userStoryId,
+                             TaskCreateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
+        }
+        if (sprintId == null || sprintId.isBlank()) {
+            throw new ValidationException("sprintId cannot be null or blank");
+        }
+        if (userStoryId == null || userStoryId.isBlank()) {
+            throw new ValidationException(
+                "userStoryId cannot be null or blank");
         }
         if (req.getTitle() == null || req.getTitle().isBlank()) {
             throw new ValidationException("title cannot be null or blank");
@@ -32,10 +40,7 @@ public class TaskCreateRequest {
             throw new ValidationException(
                 "description cannot be null or blank");
         }
-        if (req.getUserStoryId() == null || req.getUserStoryId().isBlank()) {
-            throw new ValidationException(
-                "UserStoryId cannot be null or blank");
-        }
+
         if (req.getEstimatedHours() == null || req.getEstimatedHours() <= 0) {
             throw new ValidationException(
                 "estimatedHours must be greater than zero");
@@ -50,7 +55,7 @@ public class TaskCreateRequest {
         this.description = req.getDescription();
         this.estimatedHours = req.getEstimatedHours();
         this.assigneeEmail = req.getAssigneeEmail();
-        this.UserStoryId = req.getUserStoryId();
+        this.userStoryId = userStoryId;
         this.sprintId = sprintId;
     }
 }

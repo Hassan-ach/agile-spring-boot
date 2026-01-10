@@ -24,7 +24,11 @@ public class UserStoryCreateRequest {
     public UserStoryCreateRequest(String productId,
                                   UserStoryCreateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
+        }
+
+        if (productId == null || productId.isBlank()) {
+            throw new ValidationException("productId cannot be null or blank");
         }
 
         if (req.getTitle() == null || req.getTitle().isBlank()) {
@@ -45,6 +49,10 @@ public class UserStoryCreateRequest {
             req.getAcceptanceCriteria().isBlank()) {
             throw new ValidationException(
                 "acceptanceCriteria cannot be null or blank");
+        }
+        if (req.getAcceptanceCriteria().length() > 1000) {
+            throw new ValidationException(
+                "acceptanceCriteria cannot exceed 1000 characters");
         }
 
         this.productId = productId;

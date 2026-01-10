@@ -1,7 +1,7 @@
 package com.ensa.agile.application.sprint.request;
 
-import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.global.exception.ValidationException;
+import com.ensa.agile.domain.global.utils.ValidationUtil;
 import com.ensa.agile.domain.sprint.enums.SprintStatus;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
@@ -27,7 +27,11 @@ public class SprintBackLogUpdateRequest {
                                       String id) {
 
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
+        }
+
+        if (id == null || id.isBlank()) {
+            throw new ValidationException("ID cannot be null or blank");
         }
 
         if (req.getName() == null && req.getGoal() == null &&
@@ -62,10 +66,12 @@ public class SprintBackLogUpdateRequest {
         }
 
         if (req.getScrumMasterEmail() != null) {
-            if (req.getScrumMasterEmail().isBlank() ||
-                !ValidationUtil.isValidEmail(scrumMasterEmail)) {
+            if (req.getScrumMasterEmail().isBlank()) {
                 throw new ValidationException(
                     "scrumMasterEmail cannot be blank");
+            }
+            if (!ValidationUtil.isValidEmail(req.getScrumMasterEmail())) {
+                throw new ValidationException("scrumMaster Email is not valid");
             } else {
                 this.scrumMasterEmail = req.getScrumMasterEmail();
             }

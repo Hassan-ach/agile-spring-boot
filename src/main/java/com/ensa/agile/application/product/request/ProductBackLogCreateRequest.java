@@ -12,19 +12,18 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProductBackLogCreateRequest {
     private String name;
-
     private String description;
 
     // This contsructor is for validation purposes
     public ProductBackLogCreateRequest(ProductBackLogCreateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("Request cannot be null");
+            throw new ValidationException("Request cannot be null");
         }
 
-        if (req.name == null || req.name.isEmpty()) {
+        if (req.name == null || req.name.isBlank()) {
             throw new ValidationException("Name cannot be null or empty");
         }
-        if (req.description == null || req.description.isEmpty()) {
+        if (req.description == null || req.description.isBlank()) {
             throw new ValidationException(
                 "Description cannot be null or empty");
         }

@@ -17,11 +17,16 @@ public class EpicUpdateRequest {
     public EpicUpdateRequest(String productId, String id,
                              EpicUpdateRequest req) {
         if (req == null) {
-            throw new IllegalArgumentException("request cannot be null");
+            throw new ValidationException("request cannot be null");
+        }
+
+        if (id == null || id.isBlank()) {
+            throw new ValidationException("id cannot be null or blank");
         }
 
         if (req.getTitle() == null && req.getDescription() == null) {
-            throw new ValidationException("title cannot be null or blank");
+            throw new ValidationException(
+                "at least one field must be provided for update");
         }
 
         if (req.getTitle() != null) {

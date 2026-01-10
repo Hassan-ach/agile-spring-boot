@@ -20,7 +20,7 @@ public class ProductBackLogUpdateRequest {
                                        ProductBackLogUpdateRequest req) {
 
         if (req == null) {
-            throw new IllegalArgumentException("Request cannot be null");
+            throw new ValidationException("Request cannot be null");
         }
 
         if (req.getName() == null && req.getDescription() == null) {
@@ -42,6 +42,10 @@ public class ProductBackLogUpdateRequest {
             } else {
                 this.description = req.getDescription();
             }
+        }
+
+        if (id == null || id.isBlank()) {
+            throw new ValidationException("ID cannot be null or blank");
         }
 
         this.id = id;
